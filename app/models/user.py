@@ -10,6 +10,11 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    profile_pic = db.Column(db.Text, default="https://cdn-icons-png.flaticon.com/512/187/187193.png?w=360")
+
+    notebooks = db.relationship("Notebook", back_populates="user")
+    notes = db.relationship("Note", back_populates="user")
+
 
     @property
     def password(self):
