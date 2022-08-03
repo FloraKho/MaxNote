@@ -12,7 +12,6 @@ import { authenticate } from './store/session';
 import NotebookPage from './components/NotebookPage/NotebookPage';
 import AllNotesPage from './components/AllNotesPage/AllNotesPage';
 
-import {getNotesThunk} from '../src/store/notes';
 
 
 function App() {
@@ -42,7 +41,7 @@ function App() {
         <SignUpForm />
       </Route>
 
-      <ProtectedRoute path='/notebooks' exact={true}>
+      <ProtectedRoute path='/notebooks/:notebookId'>
         <NotebookPage />
       </ProtectedRoute>
       <ProtectedRoute path='/notes'>

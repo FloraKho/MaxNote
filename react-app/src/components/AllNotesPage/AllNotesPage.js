@@ -8,23 +8,14 @@ import AllNotesList from './AllNotesList';
 import './AllNotesPage.css'
 
 function AllNotesPage(){
-    const dispatch = useDispatch()
-    const notes = useSelector(state => state.noteState)
-    useEffect(() => {
-        dispatch(getNotesThunk())
-    }, [dispatch])
 
 
     return (
 
         <div className='all-notes-page'>
             <SideBar />
-            <AllNotesList notes={notes}/>
-            <div>
-                <Route path='/notes/:noteId'>
-                    <NotePart notes={notes}/>
-                </Route>
-            </div>
+            <AllNotesList/>
+
         </div>
     )
 

@@ -1,5 +1,6 @@
 const GET_NOTES = 'notes/GET_NOTES'
 const GET_ONE_NOTE = 'notes/GET_ONE_NOTE'
+const GET_NOTEBOOK_NOTES = 'notes/GET_NOTEBOOK_NOTES'
 const ADD_NOTE = 'notes/ADD_NOTE'
 const EDIT_NOTE = 'notes/EDIT_NOTE'
 const DELETE_NOTE = 'notes/DELETE_NOTE'
@@ -15,6 +16,14 @@ const getOneNote = (note) => {
     return {
         type: GET_ONE_NOTE,
         note
+    }
+}
+
+const getNotebookNotes = (notes, notebookId) => {
+    return {
+        type: GET_NOTEBOOK_NOTES,
+        notes,
+        notebookId
     }
 }
 
@@ -49,12 +58,19 @@ export const getNotesThunk = () => async (dispatch) => {
 }
 
 export const getOneNoteThunk = (noteId) => async (dispatch) => {
-    const response = await fetch(`/api/tasks/${noteId}`);
+    const response = await fetch(`/api/notes/${noteId}`);
 
     if (response.ok) {
         const note = await response.json();
         dispatch(getOneNote(note));
     }
+}
+
+export const getNotebookNotesThunk = (notebookId) => async (dispatch) => {
+    const response = await fetch(`/api/notebooks/${notebookId}/notes`)
+    const notes = await response.json();
+
+    dispatch(getNotebookNotes(notes, notebookId))
 }
 
 export const addNoteThunk = (note) => async (dispatch) => {
@@ -111,6 +127,12 @@ const noteReducer = (state = initialState, action) => {
             action.notes.Notes.forEach(note => {
                 newState[note.id] = note;
             });
+            return newState;
+        case GET_NOTEBOOK_NOTES:
+            newState = {}
+            action.notes.Notes.forEach((note) => {
+                newState[note.id] = note
+            })
             return newState;
         case ADD_NOTE:
             return {

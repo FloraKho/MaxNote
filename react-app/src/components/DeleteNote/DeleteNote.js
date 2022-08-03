@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteNoteThunk } from '../../store/notes';
 
-function DeleteBusiness({ noteId }) {
+function DeleteNote({ noteId }) {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -20,7 +20,7 @@ function DeleteBusiness({ noteId }) {
     return (
         <>
             <div>
-                <div onClick={() => setShowModal(true)}><i class="fa-solid fa-trash-can"></i> Delete</div>
+                <div onClick={() => setShowModal(true)}><i className="fa-solid fa-trash-can"></i> Delete</div>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
@@ -38,4 +38,4 @@ function DeleteBusiness({ noteId }) {
     )
 }
 
-export default DeleteBusiness;
+export default DeleteNote;

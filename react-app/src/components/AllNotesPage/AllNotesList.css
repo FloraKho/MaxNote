@@ -77,12 +77,13 @@
 }
 
 .single-note-title {
-    font-size: 24px;
+    font-size: 18px;
     width: 100%;
     overflow: hidden;
     color: #333;
     font-weight: 500;
-    white-space: nowrap;
+    word-wrap: break-word;
+    /* white-space: nowrap; */
     /* text-decoration: none; */
 }
 
@@ -97,6 +98,7 @@
 }
 
 .single-note-2 {
+    margin-top: 10px;
     color: #4d4d4d;
     font-size: 13px;
     /* text-decoration: none; */

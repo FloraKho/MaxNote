@@ -20,9 +20,11 @@
 
 #modal-content {
     position: absolute;
+    background: #fff;
     width: 30rem;
-    padding: 3rem 2rem;
-    border-radius: .8rem;
+    padding: 2rem 2rem;
+    /* border-radius: .8rem; */
+    border: 2px solid #e6e6e6;
     position: relative;
     overflow: hidden;
 }
