@@ -6,8 +6,8 @@ import session from './session'
 
 const rootReducer = combineReducers({
   session,
-  notebooks: notebookReducer,
-  notes: noteReducer,
+  notebookState: notebookReducer,
+  noteState: noteReducer,
 });
 
 

@@ -1,0 +1,129 @@
+.sidebar {
+    width: 240px;
+    min-width: 240px;
+    background: #333;
+    display: flex;
+    flex-direction: column;
+    color: #ccc;
+    height: 100%;
+}
+
+.sidebar-top {
+    flex: 1
+}
+
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#nav-user-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-user-name {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-left: 10px;
+}
+
+.sidebar-search {
+    padding: 15px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #404040;
+    padding: 8px 10px;
+    border-radius: 50px;
+}
+
+.fa-magnifying-glass {
+    font-size: 15px;
+}
+
+.search-input {
+    color: #fff;
+    margin-left: 10px;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+
+.sidebar-newnote {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 0 15px;
+    color: #fff;
+}
+
+.create-note-btn {
+    display: flex;
+    align-items: center;
+    background: #03a82d;
+    padding: 8px 10px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.fa-plus {
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.sidebar-nav {
+    margin-top: 10px;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    padding: 10px 18px;
+    color: #ccc;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-list:hover {
+    background: #404040;
+}
+
+
+
+.fa-clipboard,
+.fa-book-bookmark,
+.fa-arrow-right-from-bracket {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+
+.sidebar-down {
+    padding: 20px 20px;
+    border-top: 1px solid #555;
+}
+
+.person-info {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 30px;
+    color: #ccc
+}
+
+.fa-linkedin, .fa-github {
+    text-decoration: none;
+    color: #ccc
+}
+
+
+.fa-linkedin:hover,
+.fa-github:hover {
+    color: #adadad
+}

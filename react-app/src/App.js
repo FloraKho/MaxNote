@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
@@ -9,12 +9,21 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 
+import NotebookPage from './components/NotebookPage/NotebookPage';
+import AllNotesPage from './components/AllNotesPage/AllNotesPage';
+
+import {getNotesThunk} from '../src/store/notes';
+
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
+
+
+
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -26,16 +35,24 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      <Route path='/login' exact={true}>
+        <LoginForm />
+      </Route>
+      <Route path='/sign-up' exact={true}>
+        <SignUpForm />
+      </Route>
+
+      <ProtectedRoute path='/notebooks' exact={true}>
+        <NotebookPage />
+      </ProtectedRoute>
+      <ProtectedRoute path='/notes'>
+        <AllNotesPage />
+      </ProtectedRoute>
+      
+      {/* <NavBar /> */}
       <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
