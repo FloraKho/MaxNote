@@ -14,7 +14,7 @@ function NotebookNotes() {
     const notebooks = useSelector(state => state.notebookState);
     const currentNotebook = Object.values(notebooks).filter(notebook => notebook.id === +notebookId);
 
-    const notesArr = Object.values(notebookNotes);
+    const notesArr = Object.values(notebookNotes).sort((a, b) => b.updated_at.localeCompare(a.updated_at));
 
     useEffect(() => {
         dispatch(getNotebookNotesThunk(notebookId))
@@ -27,7 +27,7 @@ function NotebookNotes() {
             <div className='all-note-display'>
                 <div className='all-note-header'>
                     <div className='all-note-title'>
-                        <h2><i className="fa-solid fa-book-bookmark"></i> {currentNotebook[0]?.title}</h2>
+                        <h2><i className="fa-solid fa-book-bookmark"></i>{currentNotebook[0]?.title}</h2>
                     </div>
                     <div className='all-note-count'>
                         {notesArr?.length} notes
@@ -51,7 +51,6 @@ function NotebookNotes() {
                             </div>
 
                         </NavLink>))}
-
                 </div>
 
 

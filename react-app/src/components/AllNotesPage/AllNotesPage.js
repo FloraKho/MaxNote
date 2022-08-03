@@ -1,8 +1,4 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { getNotesThunk } from '../../store/notes';
-import { Route } from 'react-router-dom';
-import NotePart from '../NotePart/NotePart';
+import React from 'react';
 import SideBar from '../SideBar/SideBar'
 import AllNotesList from './AllNotesList';
 import './AllNotesPage.css'

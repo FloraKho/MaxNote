@@ -54,7 +54,7 @@ function CreateNote() {
             setNotebook_id(notebookArr[0]?.id)
             setHasSubmitted(false)
             setShowModal(false)
-            history.push(`/notes/${newNote?.id}`)
+            history.push(`/notebooks/${newNote.notebook_id}/notes/${newNote?.id}`)
         }
     }
 
