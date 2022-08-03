@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import { logout } from '../../store/session';
+import CreateNote from '../CreateNote/CreateNote';
 import './SideBar.css'
 
 function SideBar() {
@@ -34,12 +35,13 @@ function SideBar() {
                             <input className='search-input' placeholder="Search" />
                         </div>
                     </div>
-                    <div className='sidebar-newnote' >
+                    {/* <div className='sidebar-newnote' >
                         <div className='create-note-btn'>
                             <i className="fa-solid fa-plus"></i>
                             <div className='add-new-note'>New Note</div>
                         </div>
-                    </div>
+                    </div> */}
+                    <CreateNote />
                     <div className='sidebar-nav'>
                         <ul>
                             <li>

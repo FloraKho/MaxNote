@@ -1,11 +1,12 @@
 from flask import Blueprint, jsonify, session, request
 from app.forms.profile_form import EditProfileForm
-from app.models import User, db
+from app.models import User, db, Notebook
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.awsS3 import (
     upload_file_to_s3, allowed_file, get_unique_filename)
+import datetime
 
     
 auth_routes = Blueprint('auth', __name__)
@@ -73,7 +74,13 @@ def sign_up():
             password=form.data['password'],
             profile_pic = default
         )
+        defaultNotebook = Notebook(
+            title = "First Notebook",
+            user_id = current_user.id,
+            created_at=datetime.datetime.now()
+        )
         db.session.add(user)
+        db.session.add(defaultNotebook)
         db.session.commit()
         login_user(user)
         return user.to_dict()

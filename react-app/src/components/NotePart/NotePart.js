@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { editNoteThunk, getNotesThunk } from '../../store/notes';
+import DeleteNote from '../DeleteNote/DeleteNote';
 import './NotePart.css'
 
 function NotePart({notes}) {
@@ -64,9 +65,10 @@ function NotePart({notes}) {
                     <div className='note-part-date'>
                         Last edited {currentNote?.updated_at}
                     </div>
-                    <div className='note-part-btn'>
+                    {/* <div className='note-part-btn' onClick={}>
                         Delete
-                    </div>
+                    </div> */}
+                    <DeleteNote noteId={noteId}/>
                 </div>
 
                 <div className='note-display'>
