@@ -30,15 +30,18 @@ function CreateNote(){
 
     const handleCreateNote = async (e) => {
         e.preventDefault();
-        const newNote = {
+        const note = {
             title,
             content: null,
             notebook_id,
             user_id: sessionUser?.id
         }
-        await dispatch(addNoteThunk(newNote));
-        setShowModal(false)
-        history.push(`/notes/${newNote.id}`)
+        if(note){
+            const newNote = await dispatch(addNoteThunk(note));
+            setShowModal(false)
+            history.push(`/notes/${newNote?.id}`)
+        }
+        
     }
 
 
