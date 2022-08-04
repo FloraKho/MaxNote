@@ -10,10 +10,12 @@ function NotePart({notes}) {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    // const notes = useSelector(state => state.noteState);
+
     const { noteId } = useParams()
     const currentNote = notes[parseInt(noteId)]
 
-    console.log('currentnote.....', currentNote);
+
     const sessionUser = useSelector((state) => state.session.user);
 
 
@@ -50,7 +52,7 @@ function NotePart({notes}) {
         dispatch(editNoteThunk(newNote));
        
         setEdit(false);
-        history.push(`/notes/${parseInt(noteId)}`);
+        // history.push(`/notes/${parseInt(noteId)}`);
     }
 
     return (

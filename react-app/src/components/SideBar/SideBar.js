@@ -35,12 +35,6 @@ function SideBar() {
                             <input className='search-input' placeholder="Search" />
                         </div>
                     </div>
-                    {/* <div className='sidebar-newnote' >
-                        <div className='create-note-btn'>
-                            <i className="fa-solid fa-plus"></i>
-                            <div className='add-new-note'>New Note</div>
-                        </div>
-                    </div> */}
                     <CreateNote />
                     <div className='sidebar-nav'>
                         <ul>
