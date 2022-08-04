@@ -13,8 +13,8 @@ function DeleteNote({ noteId }) {
 
     const handleDeleteSubmit = () => {
         dispatch(deleteNoteThunk(noteId));
-        history.goBack();
-
+        setShowModal(false)
+        history.push('/notes');
     }
 
     return (

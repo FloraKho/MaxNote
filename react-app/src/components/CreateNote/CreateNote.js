@@ -14,10 +14,8 @@ function CreateNote() {
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user)
     const notebooks = useSelector(state => state.notebookState)
-    console.log('useSelector notebooks', notebooks)
 
     const notebookArr = Object.values(notebooks);
-    console.log(notebookArr)
 
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('');
