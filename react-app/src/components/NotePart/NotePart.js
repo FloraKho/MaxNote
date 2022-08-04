@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
-import { editNoteThunk, getNotesThunk } from '../../store/notes';
+import { editNoteThunk, getNotesThunk, getOneNoteThunk } from '../../store/notes';
 import DeleteNote from '../DeleteNote/DeleteNote';
 import './NotePart.css'
 
-function NotePart({ notes }) {
+function NotePart({notes}) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -15,35 +15,41 @@ function NotePart({ notes }) {
     const { noteId } = useParams()
     const currentNote = notes[parseInt(noteId)]
 
-    console.log('currentNote.......', currentNote)
-
 
     const sessionUser = useSelector((state) => state.session.user);
 
 
-    const currentTitle = currentNote?.title;
-    const currentContent = currentNote?.content;
+    // const currentTitle = currentNote?.title;
+    // const currentContent = currentNote?.content;
     const currentNotebookId = currentNote?.notebook_id;
 
 
     const [edit, setEdit] = useState(false);
-    const [title, setTitle] = useState(currentTitle);
-    const [content, setContent] = useState(currentContent);
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
     // const [notebookId, setNotebookId] = useSelector(currentNotebook)
 
-    // useEffect(() => {
-    //     dispatch(getNotesThunk(noteId))
-    // }, [dispatch, noteId])
+    useEffect(() => {
+
+        if(currentNote){
+            setTitle(currentNote?.title);
+            setContent(currentNote?.content)
+        }
+
+        dispatch(getOneNoteThunk(currentNote.id))
+    }, [dispatch, currentNote])
+
+ 
 
 
-    const handleEditState = async () => {
-        setTitle(currentTitle);
-        setContent(currentContent);
-        setEdit(true);
-    }
+    // const handleEditState = async () => {
+    //     setTitle(currentTitle);
+    //     setContent(currentContent);
+    //     setEdit(true);
+    // }
 
-    const handleEditSubmit = async (e) => {
-        e.preventDefault();
+    const handleEditSubmit = (e) => {
+        e.preventDefault()
         const newNote = {
             id: noteId,
             title,
@@ -53,10 +59,28 @@ function NotePart({ notes }) {
 
         }
         dispatch(editNoteThunk(newNote));
-
+        // setTitle(newNote.title);
+        // setContent(newNote.content);
         setEdit(false);
         // history.push(`/notes/${parseInt(noteId)}`);
     }
+
+    // useEffect(() => {
+    //     const keyDownHandler = e => {
+    //         // console.log('User pressed: ', e.key);
+
+    //         if (e.key === 'Enter') {
+    //             e.preventDefault();
+    //             handleEditSubmit(e);
+    //         }
+    //     };
+
+    //     document.addEventListener('keydown', keyDownHandler);
+
+    //     return () => {
+    //         document.removeEventListener('keydown', keyDownHandler);
+    //     };
+    // }, []);
 
     return (
         <>
@@ -78,7 +102,7 @@ function NotePart({ notes }) {
 
 
 
-                    {edit ? (
+
                         <form className='note-edit' onSubmit={handleEditSubmit}>
                         <div className='note-part-2'>
                             <div>
@@ -101,20 +125,7 @@ function NotePart({ notes }) {
                             <button type='submit'>Save</button>
                         </div>
                         </form>
-                    ) : (
-                        <>
-                            <div onClick={handleEditState}>
-                                <div>
-                                    {currentNote?.title}
-                                </div>
-                                <div>
-                                    {currentNote?.content}
-                                </div>
-                            </div>
 
-                        </>
-                    )
-                    }
 
                 </div>
 
