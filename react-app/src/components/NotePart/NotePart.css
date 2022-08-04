@@ -31,9 +31,6 @@
     width: 100%;
 }
 
-
-
-
 .tooltip {
     position: relative;
     display: inline-block;
@@ -69,3 +66,4 @@
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+

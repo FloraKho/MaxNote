@@ -1,62 +1,41 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
-import { editNoteThunk, getNotesThunk } from '../../store/notes';
+import { editNoteThunk, getNotesThunk, getOneNoteThunk } from '../../store/notes';
 import DeleteNote from '../DeleteNote/DeleteNote';
 import './NotePart.css'
 
 function NotePart({ notes }) {
 
     const dispatch = useDispatch();
-    const history = useHistory();
-
-    // const notes = useSelector(state => state.noteState);
 
     const { noteId } = useParams()
     const currentNote = notes[parseInt(noteId)]
-
-    console.log('currentNote.......', currentNote)
-
-
-    const sessionUser = useSelector((state) => state.session.user);
-
 
     const currentTitle = currentNote?.title;
     const currentContent = currentNote?.content;
     const currentNotebookId = currentNote?.notebook_id;
 
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
 
-    const [edit, setEdit] = useState(false);
-    const [title, setTitle] = useState(currentTitle);
-    const [content, setContent] = useState(currentContent);
-    // const [notebookId, setNotebookId] = useSelector(currentNotebook)
-
-    // useEffect(() => {
-    //     dispatch(getNotesThunk(noteId))
-    // }, [dispatch, noteId])
-
-
-    const handleEditState = async () => {
-        setTitle(currentTitle);
-        setContent(currentContent);
-        setEdit(true);
-    }
-
-    const handleEditSubmit = async (e) => {
-        e.preventDefault();
-        const newNote = {
-            id: noteId,
-            title,
-            content,
-            // user_id: sessionUser.id
-            notebook_id: currentNotebookId
-
+    useEffect(() => {
+        if (currentNote) {
+            setTitle(currentNote?.title)
+            setContent(currentNote?.content || '')
         }
-        dispatch(editNoteThunk(newNote));
+    }, [currentNote])
 
-        setEdit(false);
-        // history.push(`/notes/${parseInt(noteId)}`);
-    }
+
+    const AUTOSAVE_INTERVAL = 1000;
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (title !== currentTitle || content !== currentContent) {
+                dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))
+            }
+        }, AUTOSAVE_INTERVAL);
+        return () => clearTimeout(timer);
+    }, [dispatch, currentTitle, currentContent, noteId, title, content, currentNotebookId]);
 
     return (
         <>
@@ -75,50 +54,22 @@ function NotePart({ notes }) {
                         Last edited {currentNote?.updated_at}
                     </div>
                 </div>
-
-
-
-                    {edit ? (
-                        <form className='note-edit' onSubmit={handleEditSubmit}>
-                        <div className='note-part-2'>
-                            <div>
-                                <input
-                                    value={title}
-                                    onChange={e => setTitle(e.target.value)}
-                                    placeholder='Title' />
-                            </div>
-                            <div>
-                                <textarea
-                                    type='text'
-                                    value={content}
-                                    onChange={e => setContent(e.target.value)}
-                                    placeholder='Start writing...' />
-                            </div>
-
-                           
-                        </div>
-                        <div className='note-part-3'>
-                            <button type='submit'>Save</button>
-                        </div>
-                        </form>
-                    ) : (
-                        <>
-                            <div onClick={handleEditState}>
-                                <div>
-                                    {currentNote?.title}
-                                </div>
-                                <div>
-                                    {currentNote?.content}
-                                </div>
-                            </div>
-
-                        </>
-                    )
-                    }
-
+                <div className='note-part-2'>
+                    <div>
+                        <input
+                            value={title}
+                            onChange={e => setTitle(e.target.value)}
+                            placeholder='Title' />
+                    </div>
+                    <div>
+                        <textarea
+                            type='text'
+                            value={content}
+                            onChange={e => setContent(e.target.value)}
+                            placeholder='Start writing...' />
+                    </div>
                 </div>
-
-  
+            </div>
         </>
 
     )

@@ -52,8 +52,6 @@ function NotebookNotes() {
 
                         </NavLink>))}
                 </div>
-
-
             </div>
 
             <Route path='/notebooks/:notebookId/notes/:noteId'>
