@@ -2,8 +2,8 @@
     display: flex;
     flex:1;
     flex-direction: column;
-    justify-content: flex-start;
     height: 100%;
+    width: 100%;
 }
 
 .note-part-1 {
@@ -12,7 +12,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 110px;
-    padding: 20px;
+    /* padding: 20px; */
     box-sizing: border-box;
     border-bottom: 1px solid #e6e6e6;
 }
@@ -22,9 +22,17 @@
 }
 
 .note-title-1 {
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
+
+.note-part-date {
+    width: 100%;
+}
+
+
+
 
 .tooltip {
     position: relative;

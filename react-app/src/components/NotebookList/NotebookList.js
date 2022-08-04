@@ -48,7 +48,6 @@ function NotebookList() {
 
                     <div className='notebook-list-main'>
                         <div>
-
                             <table>
                                 <thead>
                                     <tr>

@@ -64,7 +64,7 @@ function NotePart({ notes }) {
                 <div className='note-part-1'>
                     <div className='note-title-1'>
                         <div className='notebook-move'>
-                            <div className='tooltip'><NavLink style={{ textDecoration: 'none' }} key={currentNotebookId} to={`/notebooks/${currentNotebookId}`}>{currentNote?.notebook.title}</NavLink><span className='tooltiptext'>Go to Notebook</span></div>
+                            <div className='tooltip'><NavLink style={{ textDecoration: 'none' }} key={currentNotebookId} to={`/notebooks/${currentNotebookId}`}><i className="fa-solid fa-book-bookmark"></i>{currentNote?.notebook.title}</NavLink><span className='tooltiptext'>Go to Notebook</span></div>
                             <div className='tooltip'><i className="fa-solid fa-file-pen"></i><span className='tooltiptext'>Move note</span></div>
                         </div>
                         <div>
@@ -76,14 +76,11 @@ function NotePart({ notes }) {
                     </div>
                 </div>
 
-                <div className='note-part-2'>
+
 
                     {edit ? (
                         <form className='note-edit' onSubmit={handleEditSubmit}>
-                            {/* <div>
-                                <select value={notebookId} onChange={e => setTitle(e.target.value)} />
-                      
-                            </div> */}
+                        <div className='note-part-2'>
                             <div>
                                 <input
                                     value={title}
@@ -97,7 +94,12 @@ function NotePart({ notes }) {
                                     onChange={e => setContent(e.target.value)}
                                     placeholder='Start writing...' />
                             </div>
+
+                           
+                        </div>
+                        <div className='note-part-3'>
                             <button type='submit'>Save</button>
+                        </div>
                         </form>
                     ) : (
                         <>
@@ -116,11 +118,9 @@ function NotePart({ notes }) {
 
                 </div>
 
-            </div>
+  
         </>
-        // <h2>
-        //     dd
-        // </h2>
+
     )
 }
 

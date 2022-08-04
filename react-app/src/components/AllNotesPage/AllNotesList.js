@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import { getNotesThunk } from '../../store/notes';
@@ -31,7 +31,7 @@ function AllNotesList() {
                 </div>
                 <div className='all-note-main'>
                     {notesArr && notesArr.map((note) => (
-                        <NavLink style={{ textDecoration: 'none' } } key={note?.id} to={`/notes/${note.id}`}>
+                        <NavLink style={{ textDecoration: 'none' }} key={note?.id} to={`/notes/${note.id}`}>
                             <div className='single-note'>
                                 <div className='single-note-1'>
                                     <div className='single-note-title'>
@@ -52,12 +52,12 @@ function AllNotesList() {
 
 
             </div>
-            <div>
-                <Route path='/notes/:noteId'>
-                    <NotePart notes={notes} />
-                </Route>
-            </div>
-            
+
+            <Route path='/notes/:noteId'>
+                <NotePart notes={notes} />
+            </Route>
+
+
 
 
         </>
