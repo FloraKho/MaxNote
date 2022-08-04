@@ -49,8 +49,6 @@ function AllNotesList() {
                         </NavLink>))}
 
                 </div>
-
-
             </div>
 
             <Route path='/notes/:noteId'>

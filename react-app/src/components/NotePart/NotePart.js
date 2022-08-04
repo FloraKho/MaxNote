@@ -1,62 +1,60 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
-import { editNoteThunk, getNotesThunk } from '../../store/notes';
+import { editNoteThunk, getNotesThunk, getOneNoteThunk } from '../../store/notes';
 import DeleteNote from '../DeleteNote/DeleteNote';
 import './NotePart.css'
 
-function NotePart({ notes }) {
+function NotePart() {
 
     const dispatch = useDispatch();
     const history = useHistory();
 
-    // const notes = useSelector(state => state.noteState);
 
-    const { noteId } = useParams()
-    const currentNote = notes[parseInt(noteId)]
+    const { noteId } = useParams();
+    // const notesArr =Object.values(notes)
+    // const currentNote = notesArr.filter(note => note.id === +noteId);
+    const currentNote = useSelector(state => state.noteState[noteId])
 
-    console.log('currentNote.......', currentNote)
-
+    console.log("currentnote", currentNote)
 
     const sessionUser = useSelector((state) => state.session.user);
 
 
-    const currentTitle = currentNote?.title;
-    const currentContent = currentNote?.content;
+    // const currentTitle = currentNote?.title;
+    // const currentContent = currentNote?.content;
     const currentNotebookId = currentNote?.notebook_id;
 
 
-    const [edit, setEdit] = useState(false);
-    const [title, setTitle] = useState(currentTitle);
-    const [content, setContent] = useState(currentContent);
-    // const [notebookId, setNotebookId] = useSelector(currentNotebook)
-
-    // useEffect(() => {
-    //     dispatch(getNotesThunk(noteId))
-    // }, [dispatch, noteId])
+    // const [edit, setEdit] = useState(false); 
+    const [lastTitle, setLastTitle] = useState(currentNote?.title);
+    const [lastContent, setLastContent] = useState(currentNote?.content);
+    const [title, setTitle] = useState('')
+    const [content, setContent] = useState('')
 
 
-    const handleEditState = async () => {
-        setTitle(currentTitle);
-        setContent(currentContent);
-        setEdit(true);
-    }
+    useEffect(() => {
+        dispatch(getOneNoteThunk(noteId))
+    }, [dispatch, noteId])
 
-    const handleEditSubmit = async (e) => {
-        e.preventDefault();
-        const newNote = {
-            id: noteId,
-            title,
-            content,
-            // user_id: sessionUser.id
-            notebook_id: currentNotebookId
 
-        }
-        dispatch(editNoteThunk(newNote));
 
-        setEdit(false);
-        // history.push(`/notes/${parseInt(noteId)}`);
-    }
+    const AUTOSAVE_INTERVAL = 2000;
+    useEffect(() => {
+        const timer = setTimeout(async() => {
+            if (lastTitle !== title || lastContent !== content) {
+                await dispatch(editNoteThunk(({ 
+                    id: noteId,
+                    title,
+                    content,
+                    notebook_id: currentNotebookId
+                 })));
+                setLastTitle(title);
+                setLastContent(content);
+            }
+        }, AUTOSAVE_INTERVAL);
+        return () => clearTimeout(timer);
+    }, [dispatch, title, content, noteId]);
 
     return (
         <>
@@ -78,43 +76,28 @@ function NotePart({ notes }) {
 
 
 
-                    {edit ? (
-                        <form className='note-edit' onSubmit={handleEditSubmit}>
+                        <form className='note-edit'>
                         <div className='note-part-2'>
                             <div>
                                 <input
-                                    value={title}
+                                    value={lastTitle}
                                     onChange={e => setTitle(e.target.value)}
                                     placeholder='Title' />
                             </div>
                             <div>
                                 <textarea
                                     type='text'
-                                    value={content}
+                                    value={lastContent}
                                     onChange={e => setContent(e.target.value)}
                                     placeholder='Start writing...' />
                             </div>
 
                            
                         </div>
-                        <div className='note-part-3'>
+                        {/* <div className='note-part-3'>
                             <button type='submit'>Save</button>
-                        </div>
+                        </div> */}
                         </form>
-                    ) : (
-                        <>
-                            <div onClick={handleEditState}>
-                                <div>
-                                    {currentNote?.title}
-                                </div>
-                                <div>
-                                    {currentNote?.content}
-                                </div>
-                            </div>
-
-                        </>
-                    )
-                    }
 
                 </div>
 

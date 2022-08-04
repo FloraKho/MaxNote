@@ -113,7 +113,7 @@ export const deleteNoteThunk = (noteId) => async (dispatch) => {
 
 
 
-const initialState = {};
+const initialState = {singleNote:[]};
 
 const noteReducer = (state = initialState, action) => {
     let newState;
