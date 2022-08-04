@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { editNoteThunk, getNotesThunk } from '../../store/notes';
 import DeleteNote from '../DeleteNote/DeleteNote';
 import './NotePart.css'
 
-function NotePart({notes}) {
+function NotePart({ notes }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -15,6 +15,8 @@ function NotePart({notes}) {
     const { noteId } = useParams()
     const currentNote = notes[parseInt(noteId)]
 
+    console.log('currentNote.......', currentNote)
+
 
     const sessionUser = useSelector((state) => state.session.user);
 
@@ -22,6 +24,7 @@ function NotePart({notes}) {
     const currentTitle = currentNote?.title;
     const currentContent = currentNote?.content;
     const currentNotebookId = currentNote?.notebook_id;
+
 
     const [edit, setEdit] = useState(false);
     const [title, setTitle] = useState(currentTitle);
@@ -50,7 +53,7 @@ function NotePart({notes}) {
 
         }
         dispatch(editNoteThunk(newNote));
-       
+
         setEdit(false);
         // history.push(`/notes/${parseInt(noteId)}`);
     }
@@ -58,22 +61,22 @@ function NotePart({notes}) {
     return (
         <>
             <div className='note-part'>
-                <div>
-                    <div>Frontend</div>
-                    <div>edit</div>
-                </div>
-
                 <div className='note-part-1'>
+                    <div className='note-title-1'>
+                        <div className='notebook-move'>
+                            <div className='tooltip'><NavLink style={{ textDecoration: 'none' }} key={currentNotebookId} to={`/notebooks/${currentNotebookId}`}>{currentNote?.notebook.title}</NavLink><span className='tooltiptext'>Go to Notebook</span></div>
+                            <div className='tooltip'><i className="fa-solid fa-file-pen"></i><span className='tooltiptext'>Move note</span></div>
+                        </div>
+                        <div>
+                            <DeleteNote noteId={noteId} />
+                        </div>
+                    </div>
                     <div className='note-part-date'>
                         Last edited {currentNote?.updated_at}
                     </div>
-                    {/* <div className='note-part-btn' onClick={}>
-                        Delete
-                    </div> */}
-                    <DeleteNote noteId={noteId}/>
                 </div>
 
-                <div className='note-display'>
+                <div className='note-part-2'>
 
                     {edit ? (
                         <form className='note-edit' onSubmit={handleEditSubmit}>

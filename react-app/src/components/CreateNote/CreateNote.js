@@ -33,7 +33,7 @@ function CreateNote() {
     useEffect(() => {
         let errors = [];
         if (title.length > 50) errors.push("Title length must less than 50 characters")
-        if (!title.length) errors.push("Please enter a title for your note")
+        if (!title.length) errors.push("Your note title must contain at least one character")
         setErrors(errors);
     }, [title])
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal } from '../../context/Modal';
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -14,16 +14,32 @@ function EditNotebook({notebook}) {
 
     const [title, setTitle] = useState(currentTitle)
     const [showModal, setShowModal] = useState(false);
+    const [errors, setErrors] = useState([])
+    const [hasSubmitted, setHasSubmitted] = useState(false)
 
-    const handleRename = async () => {
-        
+
+    useEffect(() => {
+        let errors = [];
+        if (title.length > 30) errors.push("Title length must less than 30 characters")
+        if (!title.length) errors.push("Your notebook name must contain at least one character")
+        setErrors(errors);
+    }, [title])
+
+    const handleRename = async (e) => {
+        e.preventDefault();
+        setHasSubmitted(true)
         const newNotebook = {
             id: notebook.id,
             title
         }
-        await dispatch(editNotebookThunk(newNotebook));
-        setShowModal(false)
-        history.push('/notebooks');
+
+        if(newNotebook && !errors.length){
+            await dispatch(editNotebookThunk(newNotebook));
+            setTitle(newNotebook.title)
+            setHasSubmitted(false)
+            setShowModal(false)
+            history.push('/notebooks');
+        } 
     }
     return (
         <>
@@ -40,6 +56,13 @@ function EditNotebook({notebook}) {
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                         />
+                        <div>
+                            {hasSubmitted && errors &&
+                                <div className="error-msg">
+                                    {errors.map((error, idx) => <div key={idx}>{error}</div>)}
+                                </div>
+                            }
+                        </div>
                         <div>
                             <button onClick={() => setShowModal(false)}>Cancel</button>
                             <button onClick={handleRename}>Continue</button>

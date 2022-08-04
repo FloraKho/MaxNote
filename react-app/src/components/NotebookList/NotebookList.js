@@ -75,7 +75,7 @@ function NotebookList() {
                                                     {notebook?.user.email}
                                                 </td>
                                                 <td>
-                                                    <EditNotebook notebook={notebook} /> <DeleteNotebook notebookId={notebook.id}/>
+                                                    <EditNotebook notebook={notebook} /> <DeleteNotebook notebookId={notebook.id} />
                                                 </td>
 
                                             </tr>

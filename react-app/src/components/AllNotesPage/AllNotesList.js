@@ -15,7 +15,7 @@ function AllNotesList() {
         dispatch(getNotesThunk())
     }, [dispatch])
 
-    const notesArr = Object.values(notes).sort((a, b) => b.updated_at.localeCompare(a.updated_at));
+    const notesArr = Object.values(notes).sort((a, b) => b.updated_at.localeCompare(a.updated_at))
 
     return (
 
@@ -29,12 +29,7 @@ function AllNotesList() {
                         {notesArr?.length} notes
                     </div>
                 </div>
-
-
-
                 <div className='all-note-main'>
-
-
                     {notesArr && notesArr.map((note) => (
                         <NavLink style={{ textDecoration: 'none' } } key={note?.id} to={`/notes/${note.id}`}>
                             <div className='single-note'>
