@@ -48,7 +48,6 @@ function NotebookList() {
 
                     <div className='notebook-list-main'>
                         <div>
-
                             <table>
                                 <thead>
                                     <tr>
@@ -75,7 +74,7 @@ function NotebookList() {
                                                     {notebook?.user.email}
                                                 </td>
                                                 <td>
-                                                    <EditNotebook notebook={notebook} /> <DeleteNotebook notebookId={notebook.id}/>
+                                                    <EditNotebook notebook={notebook} /> <DeleteNotebook notebookId={notebook.id} />
                                                 </td>
 
                                             </tr>

@@ -18,7 +18,7 @@ function NotebookNotes() {
 
     useEffect(() => {
         dispatch(getNotebookNotesThunk(notebookId))
-    },[dispatch, notebookId])
+    }, [dispatch, notebookId])
 
 
     return (
@@ -55,11 +55,10 @@ function NotebookNotes() {
 
 
             </div>
-            <div>
-                <Route path='/notebooks/:notebookId/notes/:noteId'>
-                    <NotePart notes={notebookNotes}/>
-                </Route>
-            </div>
+
+            <Route path='/notebooks/:notebookId/notes/:noteId'>
+                <NotePart notes={notebookNotes} />
+            </Route>
 
 
 

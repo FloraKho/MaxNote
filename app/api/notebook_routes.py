@@ -38,7 +38,8 @@ def add_notebook():
         new_notebook = Notebook(
             title = form.data['title'],
             user_id = current_user.id,
-            created_at=datetime.datetime.now()
+            created_at=datetime.datetime.now(),
+            # updated_at=datetime.datetime.now(),
         )
 
         db.session.add(new_notebook)

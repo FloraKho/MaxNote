@@ -79,7 +79,7 @@ function CreateNotebook() {
                                 <div>
                                     {hasSubmitted && errors &&
                                         <div className="error-msg">
-                                            {errors.map((error, idx) => <div key={idx}> ❌ {error}</div>)}
+                                            {errors.map((error, idx) => <div key={idx}>{error}</div>)}
                                         </div>
                                     }
                                 </div>
