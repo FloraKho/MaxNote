@@ -13,13 +13,15 @@ function CreateNote() {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user)
-    const notebooks = useSelector(state => state.notebookState)
+    const notebooks = useSelector(state => state?.notebookState)
 
     const notebookArr = Object.values(notebooks);
+    const firstNotebook = notebookArr[0];
+    const defaultId = firstNotebook?.id;
 
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('');
-    const [notebook_id, setNotebook_id] = useState(notebookArr[0]?.id);
+    const [notebook_id, setNotebook_id] = useState(+defaultId);
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
@@ -41,13 +43,14 @@ function CreateNote() {
         const note = {
             title,
             content: null,
-            notebook_id,
+            notebook_id: +notebook_id,
             user_id: sessionUser?.id
         }
         const newNote = await dispatch(addNoteThunk(note));
         if (newNote && !errors.length) {
             setTitle('')
-            setNotebook_id(notebookArr[0]?.id)
+            setNotebook_id(firstNotebook?.id)
+            setErrors([])
             setHasSubmitted(false)
             setShowModal(false)
             history.push(`/notebooks/${newNote?.notebook_id}/notes/${newNote?.id}`)
@@ -56,7 +59,9 @@ function CreateNote() {
 
     const handleNoteCancel = () => {
         setTitle('');
-        setNotebook_id(notebookArr[0]?.id)
+        setNotebook_id(firstNotebook?.id)
+        setErrors([])
+        setHasSubmitted(false)
         setShowModal(false)
     }
 
@@ -102,7 +107,7 @@ function CreateNote() {
                                         onChange={(e) => setNotebook_id(e.target.value)}
                                     >
                                         {notebookArr.map(notebook =>
-                                            <option value={notebook.id} key={notebook.id}>{notebook.title}</option>
+                                            <option value={notebook?.id} key={notebook?.id}>{notebook?.title}</option>
                                         )}
                                     </select>
                                 </div>
