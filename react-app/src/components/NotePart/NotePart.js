@@ -16,8 +16,11 @@ function NotePart({ notes }) {
     const currentContent = currentNote?.content;
     const currentNotebookId = currentNote?.notebook_id;
 
+
+
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [status, setStatus] = useState('');
 
     useEffect(() => {
         if (currentNote) {
@@ -31,10 +34,14 @@ function NotePart({ notes }) {
     useEffect(() => {
         const timer = setTimeout(() => {
             if (title !== currentTitle || content !== currentContent) {
+                setStatus('Saving...')
                 dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))
             }
         }, AUTOSAVE_INTERVAL);
-        return () => clearTimeout(timer);
+        return () => {
+            clearTimeout(timer)
+            setStatus('All changes saved');
+        };
     }, [dispatch, currentTitle, currentContent, noteId, title, content, currentNotebookId]);
 
     return (
@@ -55,19 +62,24 @@ function NotePart({ notes }) {
                     </div>
                 </div>
                 <div className='note-part-2'>
-                    <div>
+                    <div className='note-input'>
                         <input
                             value={title}
                             onChange={e => setTitle(e.target.value)}
                             placeholder='Title' />
                     </div>
-                    <div>
+                    <div className='note-textarea'>
                         <textarea
                             type='text'
                             value={content}
-                            onChange={e => setContent(e.target.value)}
+                            onChange={e => {setContent(e.target.value)}}
                             placeholder='Start writing...' />
                     </div>
+                   
+                </div>
+                <div className='note-status'>
+                    <p></p>
+                    <p className='status'>{status}</p>
                 </div>
             </div>
         </>

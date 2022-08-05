@@ -67,3 +67,43 @@
     visibility: visible;
 }
 
+.note-part-date {
+    font-size: 15px;
+    color: #737375
+}
+
+
+.note-part-2 {
+    padding: 20px;
+    flex:1;
+}
+
+.note-input input{
+    outline: none;
+    width: 100%;
+    border: none;
+    font-size: 30px;
+    padding: 20px;
+}
+
+
+.note-textarea textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 20px;
+}
+
+.note-status {
+    color: #adadad;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #e6e6e6;
+    padding: 15px 30px;
+}
+
+
+.status {
+    margin-right: 30px;
+}
