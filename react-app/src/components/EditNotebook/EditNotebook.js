@@ -3,6 +3,7 @@ import { Modal } from '../../context/Modal';
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { editNotebookThunk } from '../../store/notebooks';
+import './EditNotebook.css';
 
 function EditNotebook({notebook}) {
 
@@ -44,7 +45,7 @@ function EditNotebook({notebook}) {
     return (
         <>
            
-            <div onClick={() => setShowModal(true)}><i className="fa-solid fa-pen-to-square"></i></div>
+            <div className='notebook-edit' onClick={() => setShowModal(true)}><i className="fa-solid fa-pen-to-square"></i></div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div>

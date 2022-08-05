@@ -47,15 +47,11 @@ function CreateNotebook() {
         setShowModal(false)
     }
 
-
-
     return (
         <>
-            <div onClick={() => setShowModal(true)}>
-                <div>
-                    <i class="fa-solid fa-file-circle-plus"></i>
-                    <div>New Notebook</div>
-                </div>
+            <div className='add-new-notebook' onClick={() => setShowModal(true)}>
+                <i class="fa-solid fa-file-circle-plus"></i>
+                <div>New Notebook</div>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
@@ -66,7 +62,7 @@ function CreateNotebook() {
                         </div>
                         <div>
                             <form onSubmit={handleCreateNotebook}>
-                               
+
                                 <div>
                                     <div>Name</div>
                                     <input

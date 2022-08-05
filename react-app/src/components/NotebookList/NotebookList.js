@@ -29,69 +29,72 @@ function NotebookList() {
                 <SideBar />
                 <div className='notebook-list-page'>
                     <div className='notebook-list-top'>
-                        <div>
+
+                        <div className='top-title'>
                             Notebooks
                         </div>
-                        {/* <div>
-                        <input 
-                        type='text'
-                        placeholder='Find Notebooks...'
-                        className='notebooks-search'
-                        onChange={(e) => setSearch(e.target.value)}/>
-                    </div> */}
-
-                    </div>
-                    <div>
-                        <div>3 notebooks</div>
-                        <CreateNotebook />
+                        <div className='top-second'>
+                            <div>{notebookArr.length} notebooks</div>
+                            <CreateNotebook />
+                        </div>
                     </div>
 
                     <div className='notebook-list-main'>
-                        <div>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            TITLE
-                                        </th>
-                                        <th>
-                                            CREATED BY
-                                        </th>
-                                        <th>ACTIONS</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {notebookArr && notebookArr.map((notebook) => (
-                                        <>
+                        {/* <div className='notebook-table'> */}
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        TITLE
+                                    </th>
+                                    <th>
+                                        CREATED BY
+                                    </th>
+                                    <th>
+                                        UPDATED
+                                    </th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {notebookArr && notebookArr.map((notebook) => (
+                                    <>
 
-                                            <tr>
-                                                <td>
-                                                    <NavLink style={{ textDecoration: 'none' }} key={notebook?.id} to={`/notebooks/${notebook.id}`}>
-                                                        {notebook?.title}
-                                                    </NavLink>
-                                                </td>
-                                                <td>
-                                                    {notebook?.user.email}
-                                                </td>
-                                                <td>
-                                                    <EditNotebook notebook={notebook} /> <DeleteNotebook notebookId={notebook.id} />
-                                                </td>
+                                        <tr>
+                                            <td>
+                                                {/* <div>
+                                                    <i className="fa-solid fa-caret-right"></i>
+                                                </div> */}
+                                                <NavLink style={{ color: '#393d3f',textDecoration: 'none' }} key={notebook?.id} to={`/notebooks/${notebook.id}`}>
+                                                    <i className="fa-solid fa-book"></i>   {notebook?.title}
+                                                    
+                                                </NavLink>
+                                            </td>
+                                            <td className='notebook-style'>
+                                                {notebook?.user.email}
+                                            </td>
+                                            <td className='notebook-style'>
+                                                {notebook?.created_at}
+                                            </td>
+                                            <td className='notebook-action'>
+                                                <EditNotebook notebook={notebook} /> <DeleteNotebook notebookId={notebook.id} />
+                                            </td>
 
-                                            </tr>
+                                        </tr>
 
-                                        </>
+                                    </>
 
-                                    ))}
-                                </tbody>
+                                ))}
+                            </tbody>
 
-                            </table>
-                        </div>
-
+                        </table>
                     </div>
 
                 </div>
 
             </div>
+
+            {/* </div> */}
 
         </>
     )
