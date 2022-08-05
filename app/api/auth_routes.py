@@ -74,12 +74,15 @@ def sign_up():
             password=form.data['password'],
             profile_pic = default
         )
-        defaultNotebook = Notebook(
-            title = "First Notebook",
-            user_id = current_user.id,
-            created_at=datetime.datetime.now()
-        )
+
         db.session.add(user)
+        db.session.commit()
+        if user:
+            defaultNotebook = Notebook(
+                title = "First Notebook",
+                user_id = user.id,
+                created_at=datetime.datetime.now()
+        )
         db.session.add(defaultNotebook)
         db.session.commit()
         login_user(user)

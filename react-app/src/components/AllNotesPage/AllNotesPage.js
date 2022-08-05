@@ -11,7 +11,7 @@ function AllNotesPage(){
         <div className='all-notes-page'>
             <SideBar />
             <AllNotesList/>
-
+            
         </div>
     )
 

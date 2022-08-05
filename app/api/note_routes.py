@@ -60,6 +60,7 @@ def edit_note(id):
         curr_note.title = form.data['title']
         curr_note.content = form.data['content']
         curr_note.notebook_id = form.data['notebook_id']
+        curr_note.updated_at = datetime.datetime.now()
 
         db.session.commit()
 

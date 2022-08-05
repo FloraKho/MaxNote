@@ -45,21 +45,12 @@ function AllNotesList() {
                                     {note.updated_at}
                                 </div>
                             </div>
-
                         </NavLink>))}
-
                 </div>
-
-
             </div>
-
             <Route path='/notes/:noteId'>
                 <NotePart notes={notes} />
             </Route>
-
-
-
-
         </>
     )
 }
