@@ -1,0 +1,78 @@
+.notebook-delete {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.notebook-delete:hover {
+    color: #6c757d;
+}
+
+.notebook-delete-modal {
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+}
+
+.nb-delete-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.nb-delete-btn {
+    height: 60px;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid #ccc;
+    display: flex;
+}
+
+.nb-delete-cancel {
+    height: 60%;
+    background-color: #FFFFFF;
+    border: 1px solid #343a40;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #343a40;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0;
+    outline: none;
+    padding: 6px 15px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.nb-delete {
+    height: 60%;
+    background-color: #e5383b;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0;
+    outline: none;
+    padding: 6px 18px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+}
+
+.nb-delete-cancel:hover {
+    background: #e9ecef;
+}
+
+.nb-delete:hover {
+    background: #b43638;
+}
+
+.nb-warning {
+    font-size: 14px;
+}
