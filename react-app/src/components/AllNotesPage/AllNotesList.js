@@ -6,17 +6,22 @@ import { Route } from 'react-router-dom';
 import NotePart from '../NotePart/NotePart';
 
 import './AllNotesList.css'
+import { getNotebooksThunk } from '../../store/notebooks';
 
 function AllNotesList() {
 
     const dispatch = useDispatch()
     const notes = useSelector(state => state.noteState)
-    useEffect(() => {
-        dispatch(getNotesThunk())
-    }, [dispatch])
+    const sessionUser = useSelector(state => state.session.user)
 
     const notesArr = Object.values(notes).sort((a, b) => b.updated_at.localeCompare(a.updated_at))
 
+    useEffect(() => {
+        dispatch(getNotebooksThunk(sessionUser.id))
+        dispatch(getNotesThunk(sessionUser.id))
+    }, [dispatch, sessionUser.id])
+
+   
     return (
 
         <>

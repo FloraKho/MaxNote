@@ -11,8 +11,8 @@ function DeleteNote({ noteId }) {
 
     const [showModal, setShowModal] = useState(false);
 
-    const handleDeleteSubmit = () => {
-        dispatch(deleteNoteThunk(noteId));
+    const handleDeleteSubmit = async () => {
+        await dispatch(deleteNoteThunk(noteId));
         setShowModal(false)
         history.push('/notes');
     }

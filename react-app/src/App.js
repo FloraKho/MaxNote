@@ -19,8 +19,6 @@ function App() {
   const dispatch = useDispatch();
 
 
-
-
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
@@ -43,7 +41,6 @@ function App() {
       <ProtectedRoute path='/notebooks' exact={true}>
         <NotebookList />
       </ProtectedRoute>
-
       <ProtectedRoute path='/notebooks/:notebookId'>
         <NotebookPage />
       </ProtectedRoute>
@@ -51,7 +48,7 @@ function App() {
         <AllNotesPage />
       </ProtectedRoute>
       
-      {/* <NavBar /> */}
+      {/* <NavBar />
       <Switch>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
@@ -62,7 +59,7 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
-      </Switch>
+      </Switch> */}
     </BrowserRouter>
   );
 }

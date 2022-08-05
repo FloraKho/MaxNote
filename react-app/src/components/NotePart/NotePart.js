@@ -23,6 +23,13 @@ function NotePart({ notes }) {
     const [status, setStatus] = useState('');
 
     useEffect(() => {
+        if(title.length > 50){
+            alert("Title must be within 50 characters. Save failed.")
+            setTitle(currentNote?.title)
+        }
+    }, [title, currentNote])
+
+    useEffect(() => {
         if (currentNote) {
             setTitle(currentNote?.title)
             setContent(currentNote?.content || '')

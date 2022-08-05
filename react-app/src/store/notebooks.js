@@ -2,6 +2,7 @@ const GET_NOTEBOOKS = 'notebooks/GET_NOTEBOOKS'
 const ADD_NOTEBOOK = 'notebooks/ADD_NOTEBOOK'
 const EDIT_NOTEBOOK = 'notebooks/EDIT_NOTEBOOK'
 const DELETE_NOTEBOOK = 'notebooks/DELETE_NOTEBOOK'
+const RESET_NOTEBOOK = 'notebooks/RESET_NOTEBOOK'
 
 const getNotebooks = (notebooks) => {
     return {
@@ -31,8 +32,16 @@ const deleteNotebook = (notebookId) => {
     }
 }
 
-export const getNotebooksThunk = () => async (dispatch) => {
-    const response = await fetch(`/api/notebooks`);
+export const resetNotebook = () => {
+    return {
+        type: RESET_NOTEBOOK
+    }
+}
+
+
+
+export const getNotebooksThunk = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/notebooks/users/${userId}`);
     if (response.ok) {
         const notebooks = await response.json();
         dispatch(getNotebooks(notebooks));
@@ -104,6 +113,8 @@ const notebookReducer = (state = initialState, action) => {
             newState = { ...state }
             delete newState[action.notebookId];
             return newState;
+        case RESET_NOTEBOOK:
+            return {}
         default:
             return state;
     }
