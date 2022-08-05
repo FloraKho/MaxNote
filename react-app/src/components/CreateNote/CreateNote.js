@@ -28,8 +28,6 @@ function CreateNote() {
         dispatch(getNotebooksThunk())
     }, [dispatch])
 
-
-
     useEffect(() => {
         let errors = [];
         if (title.length > 50) errors.push("Title length must less than 50 characters")
@@ -46,8 +44,8 @@ function CreateNote() {
             notebook_id,
             user_id: sessionUser?.id
         }
-        if (note && !errors.length) {
-            const newNote = await dispatch(addNoteThunk(note));
+        const newNote = await dispatch(addNoteThunk(note));
+        if (newNote && !errors.length) {
             setTitle('')
             setNotebook_id(notebookArr[0]?.id)
             setHasSubmitted(false)
@@ -100,9 +98,8 @@ function CreateNote() {
                                     <div className='select-label'>Create new note in...</div>
                                     <select
                                         className='note-select'
-                                        onChange={(e) => setNotebook_id(e.target.value)}
                                         value={+notebook_id}
-
+                                        onChange={(e) => setNotebook_id(e.target.value)}
                                     >
                                         {notebookArr.map(notebook =>
                                             <option value={notebook.id} key={notebook.id}>{notebook.title}</option>
