@@ -15,11 +15,11 @@ function NotebookList() {
 
     const notebooks = useSelector(state => state.notebookState);
     const notebookArr = Object.values(notebooks).sort((a, b) => b.created_at.localeCompare(a.created_at));
-    console.log(notebookArr);
+    const sessionUser = useSelector(state => state.session.user)
 
     useEffect(() => {
-        dispatch(getNotebooksThunk())
-    }, [dispatch])
+        dispatch(getNotebooksThunk(sessionUser.id))
+    }, [dispatch, sessionUser.id])
 
 
     return (

@@ -5,6 +5,7 @@ const ADD_NOTE = 'notes/ADD_NOTE'
 const EDIT_NOTE = 'notes/EDIT_NOTE'
 const DELETE_NOTE = 'notes/DELETE_NOTE'
 
+
 const getNotes = (notes) => {
     return {
         type: GET_NOTES,
@@ -49,8 +50,8 @@ const deleteNote = (noteId) => {
 }
 
 
-export const getNotesThunk = () => async (dispatch) => {
-    const response = await fetch(`/api/notes`);
+export const getNotesThunk = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/notes/users/${userId}`);
     if (response.ok) {
         const notes = await response.json();
         dispatch(getNotes(notes));

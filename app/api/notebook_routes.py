@@ -20,9 +20,10 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@notebook_routes.route('')
-def get_user_notebooks():
-    notebooks = Notebook.query.filter(Notebook.user_id == current_user.id).all()
+@notebook_routes.route('/users/<int:id>')
+@login_required
+def get_user_notebooks(id):
+    notebooks = Notebook.query.filter(Notebook.user_id == id).all()
     return {'Notebooks': [notebook.to_dict() for notebook in notebooks]}
 
 @notebook_routes.route('/<int:id>/notes')

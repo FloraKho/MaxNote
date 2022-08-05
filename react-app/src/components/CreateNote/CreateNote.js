@@ -8,26 +8,23 @@ import './CreateNote.css'
 
 
 
-function CreateNote({notebooks}) {
+function CreateNote({ defaultNotebookId, notebookArr }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user)
-    // const notebooks = useSelector(state => state?.notebookState)
+    // const notebooks = useSelector(state => state.notebookState)
 
-    const notebookArr = Object.values(notebooks);
-    console.log(notebookArr);
+    // const notebookArr = Object.values(notebooks);
+    
 
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('');
-    const [notebook_id, setNotebook_id] = useState(notebookArr[0]?.id);
+    const [notebook_id, setNotebook_id] = useState(defaultNotebookId);
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
-
-    // useEffect(() => {
-    //     dispatch(getNotebooksThunk())
-    // }, [dispatch])
+    console.log('createnote notebook_id', notebook_id)
 
     useEffect(() => {
         let errors = [];
@@ -37,19 +34,23 @@ function CreateNote({notebooks}) {
         setErrors(errors);
     }, [title, notebook_id])
 
+    // useEffect(() => {
+    //     dispatch(getNotebooksThunk(sessionUser.id))
+    // }, [dispatch, sessionUser.id])
+
     const handleCreateNote = async (e) => {
         e.preventDefault();
         setHasSubmitted(true)
         const note = {
+            notebook_id,
             title,
             content: null,
-            notebook_id,
             user_id: sessionUser?.id
         }
         const newNote = await dispatch(addNoteThunk(note));
         if (newNote && !errors.length) {
             setTitle('')
-            // setNotebook_id(notebookArr[0]?.id)
+            setNotebook_id(defaultNotebookId)
             setErrors([])
             setHasSubmitted(false)
             setShowModal(false)
@@ -59,7 +60,8 @@ function CreateNote({notebooks}) {
 
     const handleNoteCancel = () => {
         setTitle('');
-        // setNotebook_id(notebookArr[0]?.id)
+        setNotebook_id(defaultNotebookId)
+        setErrors([])
         setHasSubmitted(false)
         setShowModal(false)
     }
@@ -98,18 +100,18 @@ function CreateNote({notebooks}) {
                                         onChange={(e) => setTitle(e.target.value)}
                                     />
                                 </div>
-                                <div className='note-form-select'>
+                                {notebookArr && (<div className='note-form-select'>
                                     <div className='select-label'>Create new note in...</div>
                                     <select
                                         className='note-select'
                                         value={notebook_id}
                                         onChange={(e) => setNotebook_id(e.target.value)}
                                     >
-                                        {notebookArr.map(notebook =>
+                                        {defaultNotebookId && notebookArr.map(notebook =>
                                             <option value={notebook?.id} key={notebook?.id} >{notebook?.title}</option>
                                         )}
                                     </select>
-                                </div>
+                                </div>)}
 
 
                                 <div className='create-note-2'>

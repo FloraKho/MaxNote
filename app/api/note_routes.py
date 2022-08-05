@@ -20,9 +20,10 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-@note_routes.route('')
-def get_user_notes():
-    notes = Note.query.filter(Note.user_id == current_user.id).all()
+@note_routes.route('/users/<int:id>')
+@login_required
+def get_user_notes(id):
+    notes = Note.query.filter(Note.user_id == id).all()
     return {'Notes': [note.to_dict() for note in notes]}
 
 @note_routes.route('/<int:id>')
