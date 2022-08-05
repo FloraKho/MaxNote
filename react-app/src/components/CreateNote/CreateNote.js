@@ -8,34 +8,34 @@ import './CreateNote.css'
 
 
 
-function CreateNote() {
+function CreateNote({notebooks}) {
 
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user)
-    const notebooks = useSelector(state => state?.notebookState)
+    // const notebooks = useSelector(state => state?.notebookState)
 
     const notebookArr = Object.values(notebooks);
-    const firstNotebook = notebookArr[0];
-    const defaultId = firstNotebook?.id;
+    console.log(notebookArr);
 
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('');
-    const [notebook_id, setNotebook_id] = useState(+defaultId);
+    const [notebook_id, setNotebook_id] = useState(notebookArr[0]?.id);
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
 
-    useEffect(() => {
-        dispatch(getNotebooksThunk())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getNotebooksThunk())
+    // }, [dispatch])
 
     useEffect(() => {
         let errors = [];
         if (title.length > 50) errors.push("Title length must less than 50 characters")
         if (!title.length) errors.push("Your note title must contain at least one character")
+        if (!notebook_id) errors.push("Please select a notebook!")
         setErrors(errors);
-    }, [title])
+    }, [title, notebook_id])
 
     const handleCreateNote = async (e) => {
         e.preventDefault();
@@ -43,13 +43,13 @@ function CreateNote() {
         const note = {
             title,
             content: null,
-            notebook_id: +notebook_id,
+            notebook_id,
             user_id: sessionUser?.id
         }
         const newNote = await dispatch(addNoteThunk(note));
         if (newNote && !errors.length) {
             setTitle('')
-            setNotebook_id(firstNotebook?.id)
+            // setNotebook_id(notebookArr[0]?.id)
             setErrors([])
             setHasSubmitted(false)
             setShowModal(false)
@@ -59,8 +59,7 @@ function CreateNote() {
 
     const handleNoteCancel = () => {
         setTitle('');
-        setNotebook_id(firstNotebook?.id)
-        setErrors([])
+        // setNotebook_id(notebookArr[0]?.id)
         setHasSubmitted(false)
         setShowModal(false)
     }
@@ -103,11 +102,11 @@ function CreateNote() {
                                     <div className='select-label'>Create new note in...</div>
                                     <select
                                         className='note-select'
-                                        value={+notebook_id}
+                                        value={notebook_id}
                                         onChange={(e) => setNotebook_id(e.target.value)}
                                     >
                                         {notebookArr.map(notebook =>
-                                            <option value={notebook?.id} key={notebook?.id}>{notebook?.title}</option>
+                                            <option value={notebook?.id} key={notebook?.id} >{notebook?.title}</option>
                                         )}
                                     </select>
                                 </div>
