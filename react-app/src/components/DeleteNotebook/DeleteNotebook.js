@@ -4,6 +4,7 @@ import { Modal } from '../../context/Modal';
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteNotebookThunk } from '../../store/notebooks';
+import './DeleteNotebook.css'
 
 function DeleteNotebook({ notebookId }) {
     const dispatch = useDispatch();
@@ -19,15 +20,15 @@ function DeleteNotebook({ notebookId }) {
 
     return (
         <>
-                <div onClick={() => setShowModal(true)}><i className="fa-solid fa-trash-can"></i></div>
+            <div className='notebook-delete' onClick={() => setShowModal(true)}><i className="fa-solid fa-trash-can"></i></div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <div>
-                        <h2>Delete notebook?</h2>
-                        <p >Any notes in the notebook will be deleted. This cannot be undo.</p>
-                        <div>
-                            <button onClick={() => setShowModal(false)}>Cancel</button>
-                            <button onClick={handleDeleteSubmit}>Delete</button>
+                    <div className='notebook-delete-modal'>
+                        <div className='nb-delete-title'>Delete notebook?</div>
+                        <div className='nb-warning'>Any notes in the notebook will be deleted. This cannot be undo.</div>
+                        <div className='nb-delete-btn'>
+                            <button className='nb-delete-cancel' onClick={() => setShowModal(false)}>Cancel</button>
+                            <button className='nb-delete' onClick={handleDeleteSubmit}>Delete</button>
                         </div>
                     </div>
                 </Modal>

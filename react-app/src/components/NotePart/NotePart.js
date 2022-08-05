@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
-import { editNoteThunk, getNotesThunk, getOneNoteThunk } from '../../store/notes';
+import { editNoteThunk, deleteNoteThunk } from '../../store/notes';
 import DeleteNote from '../DeleteNote/DeleteNote';
 import './NotePart.css'
 
 function NotePart({ notes }) {
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const { noteId } = useParams()
     const currentNote = notes[parseInt(noteId)]
@@ -51,6 +52,12 @@ function NotePart({ notes }) {
         };
     }, [dispatch, currentTitle, currentContent, noteId, title, content, currentNotebookId]);
 
+    const handleDeleteSubmit = async () => {
+        await dispatch(deleteNoteThunk(noteId));
+        history.push('/notes');
+    }
+
+
     return (
         <>
             <div className='note-part'>
@@ -61,7 +68,8 @@ function NotePart({ notes }) {
                             <div className='tooltip'><i className="fa-solid fa-file-pen"></i><span className='tooltiptext'>Move note</span></div>
                         </div>
                         <div>
-                            <DeleteNote noteId={noteId} />
+                            {/* <DeleteNote noteId={noteId} /> */}
+                            <div onClick={handleDeleteSubmit}><i className="fa-solid fa-trash-can"></i> Delete Note</div>
                         </div>
                     </div>
                     <div className='note-part-date'>

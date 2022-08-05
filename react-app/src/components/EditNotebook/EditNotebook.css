@@ -1,0 +1,97 @@
+.notebook-edit {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.notebook-edit:hover {
+    color: #6c757d;
+}
+
+.rename-notebook {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.rename-title {
+    font-size: 20px;
+    margin-top: -10px;
+}
+
+.rename-input {
+    height: 120px;
+    margin-top: 20px;
+}
+
+.rename-input input {
+    height: 35px;
+    width: 90%;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+
+
+.rename-input-title {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.notebook-errors {
+    font-size: 12px;
+    margin-top: 10px;
+    color: #d62828;
+}
+
+.rename-btn {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+
+
+.nb-cancel {
+    background-color: #FFFFFF;
+    border: 1px solid #343a40;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #343a40;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0;
+    outline: none;
+    padding: 8px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.nb-continue {
+    background-color: #00A82D;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0;
+    outline: none;
+    padding: 8px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+}
+
+.nb-cancel:hover {
+    background: #e9ecef;
+}
+
+.nb-continue:hover {
+    background: #008b25;
+}
