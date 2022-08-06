@@ -1,22 +1,26 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { logout } from '../../store/session';
 import CreateNote from '../CreateNote/CreateNote';
 import { getNotebooksThunk, resetNotebook } from '../../store/notebooks';
 import './SideBar.css'
 
 function SideBar() {
+    const dispatch = useDispatch()
+    const history = useHistory()
+
     const sessionUser = useSelector(state => state.session.user)
-    console.log('sessionUse', sessionUser)
+    
     const notebooks = useSelector(state => state.notebookState)
     const notebookArr = Object.values(notebooks);
     const defaultNotebookId = notebookArr[0]?.id;
 
-    const dispatch = useDispatch()
-    const onLogout = async (e) => {
+
+    const onLogout = async () => {
         await dispatch(resetNotebook())
         await dispatch(logout());
+        history.push('/')
     };
 
     useEffect(() => {

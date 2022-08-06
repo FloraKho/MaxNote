@@ -25,10 +25,10 @@ function NotePart({ notes }) {
 
     useEffect(() => {
         if(title.length > 50){
-            alert("Title must be within 50 characters. Save failed.")
+            alert("Title must be within 50 characters. Autosave failed.")
             setTitle(currentNote?.title)
         }
-        // if(!title.length){
+        // if(title === ''){
         //     alert("Your note name must contain at least one character. Save failed")
         //     setTitle(currentNote?.title)
         // }
@@ -43,12 +43,13 @@ function NotePart({ notes }) {
 
     // useEffect(() => {
     //     const timer = setTimeout(() => {
-    //         if(!title.length){
-    //             setTitle('Untitled')
+    //         if (title === '') {
+    //             alert("Your note name must contain at least one character. Autosave failed")
+    //             setTitle(currentTitle)
     //         }
-    //     }, 3000);
+    //     }, 5000);
     //     return () => setTimeout(timer)
-    // }, [dispatch, title])
+    // }, [dispatch, title, currentTitle])
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -56,16 +57,30 @@ function NotePart({ notes }) {
                 setStatus('Saving...')
                 dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))
             }
-            if(!title.length) {
-                setTitle('Untitled');
-                dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))
-            }
+            // if(title === '') {
+            //     setTitle('Untitled');
+            //     dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))
+            // }
         }, 1000);
         return () => {
             clearTimeout(timer)
             setStatus('All changes saved');
         };
     }, [dispatch, currentTitle, currentContent, noteId, title, content, currentNotebookId]);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if(title === '') {
+                alert("Title must contain at least one character. Autosave failed")
+                setTitle(currentTitle);
+                dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))
+            }
+        }, 3000);
+        return () => {
+            clearTimeout(timer)
+            setStatus('All changes saved');
+        };
+    }, [dispatch, currentTitle, noteId, title, content, currentNotebookId]);
 
     const handleDeleteSubmit = async () => {
         await dispatch(deleteNoteThunk(noteId));
