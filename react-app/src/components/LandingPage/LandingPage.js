@@ -3,6 +3,8 @@ import { NavLink, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import logo from './logo.png';
+import landingpage from './landingpage.png';
 import './LandingPage.css';
 
 function LandingPage() {
@@ -27,7 +29,7 @@ function LandingPage() {
             <div className='landing-page'>
                 <div className='navigation'>
                     <div className='logo'>
-                        <img style={{ width: '80px', height: '45px' }} src='../images/logo.png' alt='MaxNote' />
+                        <img style={{ width: '80px', height: '45px' }} src={logo} alt='MaxNote' />
                         <div className='logo-title'>Maxnote</div>
                     </div>
                     <div className='nav-btn'>
@@ -43,7 +45,7 @@ function LandingPage() {
                 </div>
                 <div className='landing-page-3'>
                     <div className='lp-3-1'>
-                        <img style={{ width: '1000px' }} src='../images/landingpage.png' alt='landing page' />
+                        <img style={{ width: '1000px' }} src={landingpage} alt='landing page' />
                     </div>
                     <div className='lp-3-2'>
                         <div className='landing-page-text'>
