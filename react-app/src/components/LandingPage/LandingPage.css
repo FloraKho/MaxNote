@@ -157,6 +157,13 @@
     font-family: 'Playfair Display', serif;
 }
 
+.hover-1:hover{
+    color: #0072b1;
+}
+
+.hover-2:hover {
+    color: #171515;
+}
 
 /* 
 .landing-page-4 a:hover {

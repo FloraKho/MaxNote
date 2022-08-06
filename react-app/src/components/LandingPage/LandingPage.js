@@ -65,8 +65,8 @@ function LandingPage() {
                     </div>
                 </div>
                 <div className='landing-page-4'>
-                    <a style={{ textDecoration: 'none', color: '#333' }} href='https://www.linkedin.com/in/jingjingxu-flora/'><i className="fa-brands fa-linkedin-in"></i> Linkedin</a>
-                    <a style={{ textDecoration: 'none', color: '#333' }} href='https://github.com/FloraKho/MaxNote'><i className="fa-brands fa-square-github"></i> Github</a>
+                    <a style={{ textDecoration: 'none', color: '#6c757d' }} href='https://www.linkedin.com/in/jingjingxu-flora/'><div className='hover-1'><i className="fa-brands fa-linkedin-in"></i> Linkedin</div></a>
+                    <a style={{ textDecoration: 'none', color: '#6c757d' }} href='https://github.com/FloraKho/MaxNote'><div className='hover-2'><i className="fa-brands fa-square-github"></i> Github</div></a>
                 </div>
             </div>
         </>
