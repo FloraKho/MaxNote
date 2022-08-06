@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import NotebookPage from './components/NotebookPage/NotebookPage';
 import AllNotesPage from './components/AllNotesPage/AllNotesPage';
 import NotebookList from './components/NotebookList/NotebookList';
+import LandingPage from './components/LandingPage/LandingPage';
 
 
 
@@ -32,6 +33,9 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Route path='/' exact={true}>
+        <LandingPage />
+      </Route>
       <Route path='/login' exact={true}>
         <LoginForm />
       </Route>
@@ -47,7 +51,7 @@ function App() {
       <ProtectedRoute path='/notes'>
         <AllNotesPage />
       </ProtectedRoute>
-      
+
       {/* <NavBar />
       <Switch>
         <ProtectedRoute path='/users' exact={true} >
