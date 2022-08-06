@@ -1,0 +1,47 @@
+.create-notebook-modal {
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-family: 'Roboto', sans-serif;
+}
+
+.create-nb-top {
+    height: 30%;
+}
+
+.nb-title {
+    font-size: 18px;
+}
+
+.create-notebook-modal form {
+    height: 40%;
+}
+
+.nb-warning {
+    font-size: 13px;
+    color: #495057;
+    margin-top: 10px;
+}
+
+.nb-form-title {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.create-nb-form input {
+    width: 90%;
+    height: 30px;
+    padding: 3px 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #c6cbd0;
+}
+
+.nb-create-btn {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 30px;
+    padding-top: 30px;
+}

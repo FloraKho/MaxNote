@@ -3,6 +3,7 @@ import { Modal } from '../../context/Modal';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addNotebookThunk } from '../../store/notebooks';
+import './CreateNotebook.css';
 
 
 
@@ -33,17 +34,21 @@ function CreateNotebook() {
             title,
             user_id: sessionUser?.id
         }
+       
         if (notebook && !errors.length) {
-            const newNotebook = await dispatch(addNotebookThunk(notebook));
+            await dispatch(addNotebookThunk(notebook));
             setTitle('')
+            setErrors([])
             setHasSubmitted(false)
             setShowModal(false)
-            history.push(`/notebooks/${newNotebook.id}`)
+            history.push(`/notebooks`)
         }
     }
 
     const handleNotebookCancel = () => {
         setTitle('');
+        setErrors([])
+        setHasSubmitted(false)
         setShowModal(false)
     }
 
@@ -55,39 +60,38 @@ function CreateNotebook() {
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <div>
-                        <div>
-                            <h2>Create new notebook</h2>
-                            <p>Notebooks are useful for grouping notes around a common topic.</p>
+                    <div className='create-notebook-modal'>
+                        <div className='create-nb-top'>
+                            <div className='nb-title'>Create new notebook</div>
+                            <div className='nb-warning'>Notebooks are useful for grouping notes around a common topic.</div>
                         </div>
-                        <div>
-                            <form onSubmit={handleCreateNotebook}>
 
-                                <div>
-                                    <div>Name</div>
-                                    <input
-                                        type="text"
-                                        placeholder='Notebook name'
-                                        value={title}
-                                        onChange={(e) => setTitle(e.target.value)}
-                                    />
-                                </div>
-                                <div>
-                                    {hasSubmitted && errors &&
-                                        <div className="error-msg">
-                                            {errors.map((error, idx) => <div key={idx}>{error}</div>)}
-                                        </div>
-                                    }
-                                </div>
+                        <form onSubmit={handleCreateNotebook}>
+                            <div className='create-nb-form'>
+                                <div className='nb-form-title'>Name</div>
+                                <input
+                                    type="text"
+                                    placeholder='Notebook name'
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                {hasSubmitted && errors &&
+                                    <div className="notebook-errors">
+                                        {errors.map((error, idx) => <div key={idx}>{error}</div>)}
+                                    </div>
+                                }
+                            </div>
 
 
-                                <div >
-                                    <button onClick={handleNotebookCancel}>Cancel</button>
-                                    <button type="submit">Create</button>
-                                </div>
-                            </form>
-                        </div>
+                            <div className='nb-create-btn'>
+                                <button className='nb-cancel' onClick={handleNotebookCancel}>Cancel</button>
+                                <button className='nb-continue' type="submit">Create</button>
+                            </div>
+                        </form>
                     </div>
+
                 </Modal>
             )}
         </>
