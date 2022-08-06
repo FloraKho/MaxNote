@@ -113,3 +113,17 @@
 .status {
     margin-right: 30px;
 }
+
+
+.delete-note-btn {
+    cursor: pointer;
+    background-color: #00a82d;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
+    padding: 8px 16px;
+}
+
+.delete-note-btn:hover {
+    background-color: #018223;
+}

@@ -28,6 +28,10 @@ function NotePart({ notes }) {
             alert("Title must be within 50 characters. Save failed.")
             setTitle(currentNote?.title)
         }
+        // if(!title.length){
+        //     alert("Your note name must contain at least one character. Save failed")
+        //     setTitle(currentNote?.title)
+        // }
     }, [title, currentNote])
 
     useEffect(() => {
@@ -37,15 +41,26 @@ function NotePart({ notes }) {
         }
     }, [currentNote])
 
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         if(!title.length){
+    //             setTitle('Untitled')
+    //         }
+    //     }, 3000);
+    //     return () => setTimeout(timer)
+    // }, [dispatch, title])
 
-    const AUTOSAVE_INTERVAL = 1000;
     useEffect(() => {
         const timer = setTimeout(() => {
             if (title !== currentTitle || content !== currentContent) {
                 setStatus('Saving...')
                 dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))
             }
-        }, AUTOSAVE_INTERVAL);
+            if(!title.length) {
+                setTitle('Untitled');
+                dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))
+            }
+        }, 1000);
         return () => {
             clearTimeout(timer)
             setStatus('All changes saved');
@@ -69,7 +84,7 @@ function NotePart({ notes }) {
                         </div>
                         <div>
                             {/* <DeleteNote noteId={noteId} /> */}
-                            <div onClick={handleDeleteSubmit}><i className="fa-solid fa-trash-can"></i> Delete Note</div>
+                            <div className='delete-note-btn' onClick={handleDeleteSubmit}>Delete</div>
                         </div>
                     </div>
                     <div className='note-part-date'>

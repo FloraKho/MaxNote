@@ -47,8 +47,9 @@ function CreateNote({ defaultNotebookId, notebookArr }) {
             content: null,
             user_id: sessionUser?.id
         }
-        const newNote = await dispatch(addNoteThunk(note));
-        if (newNote && !errors.length) {
+    
+        if (note && !errors.length) {    
+            const newNote = await dispatch(addNoteThunk(note));
             setTitle('')
             setNotebook_id(defaultNotebookId)
             setErrors([])
@@ -87,7 +88,7 @@ function CreateNote({ defaultNotebookId, notebookArr }) {
                                 <div>
                                     {hasSubmitted && errors &&
                                         <div className="error-msg">
-                                            {errors.map((error, idx) => <div key={idx}> ❌ {error}</div>)}
+                                            {errors.map((error, idx) => <div key={idx}>{error}</div>)}
                                         </div>
                                     }
                                 </div>
