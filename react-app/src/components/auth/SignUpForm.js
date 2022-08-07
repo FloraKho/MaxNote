@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import logo from './logo.png';
+import './SignUpForm.css';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -18,6 +20,8 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
+      } else {
+        setErrors(["Two passwords do not match!"])
       }
     }
   };
@@ -43,51 +47,77 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
+
+    <div class='signuppage'>
+      <div class='center'>
+        <div>
+          <div>
+            <NavLink style={{ textDecoration: 'none', color: '#333' }} to='/'>
+              <img style={{ width: '110px', height: '65px' }} src={logo} alt='MaxNote' />
+              <div className='session-title'>Maxnote</div>
+            </NavLink>
+          </div>
+          <div className='session-words'>Remember everything important.</div>
+        </div>
+        <form className='session-form' onSubmit={onSignUp}>
+          <div className='session-errors'>
+            {errors.map((error, ind) => (
+              <div key={ind}>❌ {error}</div>
+            ))}
+          </div>
+
+          {/* <label>Username</label> */}
+          <input
+            className='session-input'
+            placeholder='Username'
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+          ></input>
+
+
+          {/* <label>Email</label> */}
+
+          <input
+            className='session-input'
+            placeholder='Email address'
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+          ></input>
+
+
+          {/* <label>Password</label> */}
+          <input
+            className='session-input'
+            placeholder='Password'
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+          ></input>
+
+          {/* <label>Confirmed Password</label> */}
+          <input
+            className='session-input'
+            placeholder='Confirmed password'
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+          ></input>
+
+          <button className='session-submit' type='submit'>Sign Up</button>
+        </form>
+        <div className='session-info'>
+          <h4>Already have an account?</h4>
+          <div><NavLink style={{ textDecoration: 'none', color: '#00a82d' }} to='/login'>Log In</NavLink></div>
+        </div>
       </div>
-      <div>
-        <label>User Name</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type='submit'>Sign Up</button>
-    </form>
+    </div >
   );
 };
 
