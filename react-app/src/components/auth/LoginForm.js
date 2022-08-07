@@ -43,50 +43,51 @@ const LoginForm = () => {
       <div className='center'>
         <div>
           <div>
-            <NavLink to='/'>
-              <img style={{ width: '90px', height: '50px' }} src={logo} alt='MaxNote' />
-              <div style={{ textDecoration: 'none', color: '#333' }}>Maxnote</div>
+            <NavLink style={{ textDecoration: 'none', color: '#333' }} to='/'>
+              <img style={{ width: '110px', height: '65px' }} src={logo} alt='MaxNote' />
+              <div className='session-title'>Maxnote</div>
             </NavLink>
           </div>
-          <div>Remember everything important.</div>
+          <div className='session-words'>Remember everything important.</div>
         </div>
-        <div>
-          <button className='demo' onClick={demouser}>Log in as demo user</button>
-        </div>
+        <button className='session-demo' onClick={demouser}>Continue with Demouser</button>
+
         <div className='line'>
           <div>or</div>
         </div>
-        <form onSubmit={onLogin}>
-          <div>
+        <form className='session-form' onSubmit={onLogin}>
+          <div className='session-errors'>
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div key={ind}>❌ {error}</div>
             ))}
           </div>
-          <div>
+          {/* <div> */}
             {/* <label htmlFor='email'>Email</label> */}
             <input
+              className='session-input'
               name='email'
               type='text'
-              placeholder='Email'
+              placeholder='Email address'
               value={email}
               onChange={updateEmail}
             />
-          </div>
-          <div>
+          {/* </div> */}
+          {/* <div className='seesion-input'> */}
             {/* <label htmlFor='password'>Password</label> */}
             <input
+              className='session-input'
               name='password'
               type='password'
               placeholder='Password'
               value={password}
               onChange={updatePassword}
             />
-          </div>
-          <button type='submit'>Log In</button>
+          {/* </div> */}
+          <button className='session-submit' type='submit'>Continue</button>
         </form>
-        <div>
+        <div className='session-info'>
           <h4>Don't have an account?</h4>
-          <NavLink to='/sign-up'><div>Create account</div></NavLink>
+          <div><NavLink style={{ textDecoration: 'none', color: '#00a82d' }} to='/sign-up'>Create account</NavLink></div>
         </div>
       </div>
     </div>

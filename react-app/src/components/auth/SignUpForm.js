@@ -20,6 +20,8 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
+      } else {
+        setErrors(["Two passwords do not match!"])
       }
     }
   };
@@ -47,71 +49,75 @@ const SignUpForm = () => {
   return (
 
     <div class='signuppage'>
-      <div class='signupform'>
+      <div class='center'>
         <div>
           <div>
-            <NavLink to='/'>
-              <img style={{ width: '90px', height: '50px' }} src={logo} alt='MaxNote' />
-              <div style={{ textDecoration: 'none', color: '#333' }}>Maxnote</div>
+            <NavLink style={{ textDecoration: 'none', color: '#333' }} to='/'>
+              <img style={{ width: '110px', height: '65px' }} src={logo} alt='MaxNote' />
+              <div className='session-title'>Maxnote</div>
             </NavLink>
           </div>
-          <div>Remember everything important.</div>
+          <div className='session-words'>Remember everything important.</div>
         </div>
-        <form onSubmit={onSignUp}>
-          <div>
+        <form className='session-form' onSubmit={onSignUp}>
+          <div className='session-errors'>
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div key={ind}>❌ {error}</div>
             ))}
           </div>
-          <div>
-            {/* <label>Username</label> */}
-            <input
+
+          {/* <label>Username</label> */}
+          <input
+            className='session-input'
             placeholder='Username'
-              type='text'
-              name='username'
-              onChange={updateUsername}
-              value={username}
-            ></input>
-          </div>
-          <div>
-            {/* <label>Email</label> */}
-            <input
-            placeholder='Email'
-              type='text'
-              name='email'
-              onChange={updateEmail}
-              value={email}
-            ></input>
-          </div>
-          <div>
-            {/* <label>Password</label> */}
-            <input
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+          ></input>
+
+
+          {/* <label>Email</label> */}
+
+          <input
+            className='session-input'
+            placeholder='Email address'
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+          ></input>
+
+
+          {/* <label>Password</label> */}
+          <input
+            className='session-input'
             placeholder='Password'
-              type='password'
-              name='password'
-              onChange={updatePassword}
-              value={password}
-            ></input>
-          </div>
-          <div>
-            {/* <label>Confirmed Password</label> */}
-            <input
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+          ></input>
+
+          {/* <label>Confirmed Password</label> */}
+          <input
+            className='session-input'
             placeholder='Confirmed password'
-              type='password'
-              name='repeat_password'
-              onChange={updateRepeatPassword}
-              value={repeatPassword}
-              required={true}
-            ></input>
-          </div>
-          <button type='submit'>Sign Up</button>
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+          ></input>
+
+          <button className='session-submit' type='submit'>Sign Up</button>
         </form>
-        <div>
+        <div className='session-info'>
           <h4>Already have an account?</h4>
-          <NavLink to='/login'><div>Log In</div></NavLink>
+          <div><NavLink style={{ textDecoration: 'none', color: '#00a82d' }} to='/login'>Log In</NavLink></div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

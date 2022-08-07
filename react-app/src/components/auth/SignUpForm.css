@@ -1,0 +1,24 @@
+.signuppage {
+    margin: 0;
+    padding: 0;
+    background-image: url("background.png");
+    background-repeat: repeat;
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 314px;
+    max-width: 512px;
+    box-shadow: 0px 4px 24px rgb(0 0 0 / 10%);
+    background-color: #ffffff;
+    border-radius: 2px;
+    margin: 0px auto 28px auto;
+    padding: 63px 99px 48px;
+}  */
