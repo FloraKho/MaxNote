@@ -22,6 +22,7 @@ function NotebookList() {
     }, [dispatch, sessionUser.id])
 
 
+
     return (
         <>
 
@@ -77,7 +78,8 @@ function NotebookList() {
                                                 {notebook?.created_at}
                                             </td>
                                             <td className='notebook-action'>
-                                                <EditNotebook notebook={notebook} /> <DeleteNotebook notebookId={notebook.id} />
+                                                <EditNotebook notebook={notebook} /> 
+                                                <DeleteNotebook notebookId={notebook.id} notebooks={notebookArr}/>
                                             </td>
 
                                         </tr>
