@@ -22,10 +22,10 @@ function DeleteNotebook({ notebookId, notebooks }) {
         setErrors(errors);
     }, [notebooks.length])
 
-    const handleDeleteSubmit = () => {
+    const handleDeleteSubmit = async () => {
         setHasSubmitted(true)
         if (!errors.length) {
-            dispatch(deleteNotebookThunk(notebookId));
+            await dispatch(deleteNotebookThunk(notebookId));
             setErrors([])
             setHasSubmitted(false)
             setShowModal(false)
