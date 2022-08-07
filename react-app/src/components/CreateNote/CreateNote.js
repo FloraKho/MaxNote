@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal } from '../../context/Modal';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getNotebooksThunk } from '../../store/notebooks';
+// import { getNotebooksThunk } from '../../store/notebooks';
 import { addNoteThunk } from '../../store/notes';
 import './CreateNote.css'
 
@@ -16,7 +16,7 @@ function CreateNote({ defaultNotebookId, notebookArr }) {
     // const notebooks = useSelector(state => state.notebookState)
 
     // const notebookArr = Object.values(notebooks);
-    
+
 
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState('');
@@ -47,15 +47,17 @@ function CreateNote({ defaultNotebookId, notebookArr }) {
             content: null,
             user_id: sessionUser?.id
         }
-    
-        if (note && !errors.length) {    
+
+        if (note && !errors.length) {
             const newNote = await dispatch(addNoteThunk(note));
-            setTitle('')
-            setNotebook_id(defaultNotebookId)
-            setErrors([])
-            setHasSubmitted(false)
-            setShowModal(false)
-            history.push(`/notebooks/${newNote?.notebook_id}/notes/${newNote?.id}`)
+            if (newNote) {
+                setTitle('')
+                setNotebook_id(defaultNotebookId)
+                setErrors([])
+                setHasSubmitted(false)
+                setShowModal(false)
+                history.push(`/notebooks/${newNote?.notebook_id}/notes/${newNote?.id}`)
+            }
         }
     }
 

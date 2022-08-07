@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getNotebooksThunk } from '../../store/notebooks';
@@ -20,6 +20,7 @@ function NotebookList() {
     useEffect(() => {
         dispatch(getNotebooksThunk(sessionUser.id))
     }, [dispatch, sessionUser.id])
+
 
 
     return (
@@ -65,9 +66,9 @@ function NotebookList() {
                                                 {/* <div>
                                                     <i className="fa-solid fa-caret-right"></i>
                                                 </div> */}
-                                                <NavLink style={{ color: '#393d3f',textDecoration: 'none' }} key={notebook?.id} to={`/notebooks/${notebook.id}`}>
+                                                <NavLink style={{ color: '#393d3f', textDecoration: 'none' }} key={notebook?.id} to={`/notebooks/${notebook.id}`}>
                                                     <i className="fa-solid fa-book"></i>   {notebook?.title}
-                                                    
+
                                                 </NavLink>
                                             </td>
                                             <td className='notebook-style'>
@@ -77,7 +78,8 @@ function NotebookList() {
                                                 {notebook?.created_at}
                                             </td>
                                             <td className='notebook-action'>
-                                                <EditNotebook notebook={notebook} /> <DeleteNotebook notebookId={notebook.id} />
+                                                <EditNotebook notebook={notebook} />
+                                                <DeleteNotebook notebookId={notebook.id} notebooks={notebookArr} />
                                             </td>
 
                                         </tr>
