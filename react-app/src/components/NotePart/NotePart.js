@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { editNoteThunk, deleteNoteThunk } from '../../store/notes';
 import DeleteNote from '../DeleteNote/DeleteNote';
+import Editor from './Editor';
+import "react-quill/dist/quill.snow.css";
 import './NotePart.css'
 
 function NotePart({ notes }) {
@@ -114,11 +116,13 @@ function NotePart({ notes }) {
                             placeholder='Title' />
                     </div>
                     <div className='note-textarea'>
-                        <textarea
+                        {/* <textarea
                             type='text'
                             value={content}
                             onChange={e => {setContent(e.target.value)}}
-                            placeholder='Start writing...' />
+                            placeholder='Start writing...' /> */}
+
+                            <Editor content={content} setContent={setContent}/>
                     </div>
                    
                 </div>

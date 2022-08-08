@@ -74,7 +74,7 @@
 
 
 .note-part-2 {
-    padding: 20px;
+    /* padding: 20px; */
     flex:1;
 }
 
@@ -91,11 +91,9 @@
     height: 100%;
 } */
 
-.note-textarea textarea{
+.note-textarea {
     width: 100%;
-    border: none;
     outline: none;
-    padding: 20px;
     height: auto;
 }
 
@@ -126,4 +124,28 @@
 
 .delete-note-btn:hover {
     background-color: #018223;
+}
+
+.editor {
+    outline: none;
+}
+
+.ql-toolbar.ql-snow {
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+    margin: 2px 15px;
+}
+
+.ql-container {
+    width: 100%;
+    height: 100%;
+    border: none !important;
+    padding: 10px 40px;
+}
+
+.ql-editor {
+    line-height: 24px !important;
+    font-size: 14px !important;
+    padding: 20px !important;
 }
