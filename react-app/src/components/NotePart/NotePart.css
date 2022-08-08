@@ -133,9 +133,9 @@
     background-color: #018223;
 }
 
-.editor {
+/* .editor {
     outline: none;
-}
+} */
 
 .ql-toolbar.ql-snow {
     border-left: none !important;
@@ -148,7 +148,7 @@
     width: 100%;
     height: 100%;
     border: none !important;
-    padding: 10px 40px;
+    padding: 10px 20px;
 }
 
 .ql-editor {
