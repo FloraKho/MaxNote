@@ -143,3 +143,9 @@
     border: none !important;
     padding: 10px 40px;
 }
+
+.ql-editor {
+    line-height: 24px !important;
+    font-size: 14px !important;
+    padding: 20px !important;
+}
