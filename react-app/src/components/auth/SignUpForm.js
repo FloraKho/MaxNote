@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -20,9 +20,9 @@ const SignUpForm = () => {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
-      } else {
-        setErrors(["Two passwords do not match!"])
       }
+    } else {
+      setErrors(["Confirm Password field must be the same as the Password field"])
     }
   };
 
@@ -41,6 +41,16 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
+
+  // useEffect(() => {
+  //   let errors = [];
+  //   if(!email.includes('@')){
+  //     errors.push('Please provide a valid email.')
+  //   }
+  //   if(password.length < 6) {
+  //     errors.push('Password must be 6 characters or more.')
+  //   }
+  // })
 
   if (user) {
     return <Redirect to='/notes' />;
