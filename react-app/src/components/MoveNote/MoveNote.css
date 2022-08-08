@@ -1,0 +1,66 @@
+.notification {
+    position: relative;
+    display: inline-block;
+    color: #333;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.notification .notification-text {
+    visibility: hidden;
+    width: 80px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 8px 4px;
+    position: absolute;
+    z-index: 1;
+    top: 80%;
+    left: 120%;
+    margin-left: -60px;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+.notification .notification-text::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #333 transparent;
+}
+
+.notification:hover .notification-text {
+    visibility: visible;
+}
+
+.notification:hover {
+    color: #008a2d;
+}
+
+
+.move-note {
+    height: 200px;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.move-note-title {
+    border-bottom: 2px solid #e6e6e6;
+    padding: 10px 0px;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #495057;
+    margin-bottom: 20px;
+}
+
+.move-note-form {
+    margin-bottom: 30px;
+}
