@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { editNoteThunk, deleteNoteThunk } from '../../store/notes';
 import DeleteNote from '../DeleteNote/DeleteNote';
+import MoveNote from '../MoveNote/MoveNote';
 import Editor from './Editor';
 import "react-quill/dist/quill.snow.css";
 import './NotePart.css'
@@ -26,7 +27,7 @@ function NotePart({ notes }) {
     const [status, setStatus] = useState('');
 
     useEffect(() => {
-        if(title.length > 50){
+        if (title.length > 50) {
             alert("Title must be within 50 characters. Autosave failed.")
             setTitle(currentNote?.title)
         }
@@ -72,7 +73,7 @@ function NotePart({ notes }) {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if(title === '') {
+            if (title === '') {
                 alert("Title must contain at least one character. Autosave failed")
                 setTitle(currentTitle);
                 dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))
@@ -96,8 +97,9 @@ function NotePart({ notes }) {
                 <div className='note-part-1'>
                     <div className='note-title-1'>
                         <div className='notebook-move'>
-                            <div className='tooltip'><NavLink style={{ textDecoration: 'none' }} key={currentNotebookId} to={`/notebooks/${currentNotebookId}`}><i className="fa-solid fa-book-bookmark"></i>{currentNote?.notebook.title}</NavLink><span className='tooltiptext'>Go to Notebook</span></div>
-                            <div className='tooltip'><i className="fa-solid fa-file-pen"></i><span className='tooltiptext'>Move note</span></div>
+                            <div className='tooltip'><NavLink style={{ textDecoration: 'none', color: '#354f52' }} key={currentNotebookId} to={`/notebooks/${currentNotebookId}`}><i className="fa-solid fa-book-bookmark"></i>{currentNote?.notebook.title}</NavLink><span className='tooltiptext'>Go to notebook</span></div>
+                            {/* <div className='tooltip'><i className="fa-solid fa-file-pen"></i><span className='tooltiptext'>Move note</span></div> */}
+                            <MoveNote noteId={noteId} title={title} content={content} currentNotebookId={currentNotebookId} />
                         </div>
                         <div>
                             {/* <DeleteNote noteId={noteId} /> */}
@@ -122,9 +124,9 @@ function NotePart({ notes }) {
                             onChange={e => {setContent(e.target.value)}}
                             placeholder='Start writing...' /> */}
 
-                            <Editor content={content} setContent={setContent}/>
+                        <Editor content={content} setContent={setContent} />
                     </div>
-                   
+
                 </div>
                 <div className='note-status'>
                     <p></p>
