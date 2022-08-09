@@ -4,7 +4,7 @@ import ReactQuill from 'react-quill';
 import './NotePart.css';
 
 
-function Editor({ content, setContent}) {
+function Editor({ content, setContent }) {
 
     const modules = {
         toolbar: [
@@ -12,8 +12,8 @@ function Editor({ content, setContent}) {
             [{ 'font': [] }],
             ["bold", "italic", "underline", "strike"],
             [{ 'color': [] },
-            { 'background': [] },
-            { list: "ordered" },
+            { 'background': [] }],
+            [{ list: "ordered" },
             { list: "bullet" },
             { indent: "-1" },
             { indent: "+1" },
@@ -22,31 +22,15 @@ function Editor({ content, setContent}) {
         ]
     };
 
-    var toolbarOptions = [
-        [{ 'size': ['small', false, 'large', 'huge'] }], 
-        [{ 'font': [] }],
-        ['bold', 'italic', 'underline', 'strike'],        
-
-        [{ 'color': [] }, { 'background': [] }],    
-
-        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-        [{ 'indent': '-1' }, { 'indent': '+1' }],                          
-        [{ 'align': [] }],
-
-
-        ['clean']                                 
-    ];
-
 
     return (
-        <ReactQuill 
-        modules={modules}
-        toolbarOptions={toolbarOptions}
-        theme="snow"
-        type="text"
-        value={content}
-        onChange={setContent}
-        placeholder="Start writing..."/>
+        <ReactQuill
+            modules={modules}
+            theme="snow"
+            type="text"
+            value={content}
+            onChange={setContent}
+            placeholder="Start writing..." />
     )
 }
 
