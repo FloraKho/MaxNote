@@ -1,0 +1,39 @@
+.search-result {
+    width: 240px;
+    margin-left: -10px;
+    max-height: 400px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow: hidden;
+    overflow-y: auto;
+    cursor: pointer;
+    background-color: #fff;
+    color: #333;
+    padding: 5px 0;
+}
+
+.search-info:hover {
+    background-color: #eeeeef;
+}
+
+.search-info {
+    display: flex;
+    margin: 5px 4px;
+    padding: 10px 5px;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+}
+
+
+.go {
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.search-note {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}

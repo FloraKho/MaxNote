@@ -42,15 +42,19 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
+
+
   // useEffect(() => {
-  //   let errors = [];
   //   if(!email.includes('@')){
-  //     errors.push('Please provide a valid email.')
+  //     setErrors(['Please provide a valid email.'])
   //   }
   //   if(password.length < 6) {
-  //     errors.push('Password must be 6 characters or more.')
+  //     setErrors(['Password must be 6 characters or more.'])
   //   }
-  // })
+  //   if(username.length < 4){
+  //     setErrors(['Please provide a username with at least 4 characters.'])
+  //   }
+  // }, [email, password, username])
 
   if (user) {
     return <Redirect to='/notes' />;

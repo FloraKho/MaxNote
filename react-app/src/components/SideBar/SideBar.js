@@ -1,17 +1,18 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from "react-router-dom";
 import { logout } from '../../store/session';
 import CreateNote from '../CreateNote/CreateNote';
 import { getNotebooksThunk, resetNotebook } from '../../store/notebooks';
 import './SideBar.css'
+import Search from '../Search/Search';
 
 function SideBar() {
     const dispatch = useDispatch()
     const history = useHistory()
 
     const sessionUser = useSelector(state => state.session.user)
-    
+
     const notebooks = useSelector(state => state.notebookState)
     const notebookArr = Object.values(notebooks);
     const defaultNotebookId = notebookArr[0]?.id;
@@ -42,13 +43,8 @@ function SideBar() {
                             {sessionUser?.username}
                         </div>
                     </div>
-                    <div className='sidebar-search'>
-                        <div className='search-bar'>
-                            <i className="fa-solid fa-magnifying-glass"></i>
-                            <input className='search-input' placeholder="Search" />
-                        </div>
-                    </div>
-                    {notebooks && defaultNotebookId && <CreateNote defaultNotebookId={defaultNotebookId} notebookArr={notebookArr}/>}
+                    <Search />
+                    {notebooks && defaultNotebookId && <CreateNote defaultNotebookId={defaultNotebookId} notebookArr={notebookArr} />}
                     <div className='sidebar-nav'>
                         <ul>
                             <li>
@@ -62,8 +58,8 @@ function SideBar() {
                             <li>
                                 <NavLink to='/notebooks'>
                                     <div className='nav-list'>
-                                    <i className="fa-solid fa-book-bookmark"></i>
-                                    <div className='navbar-item'>Notebooks</div>
+                                        <i className="fa-solid fa-book-bookmark"></i>
+                                        <div className='navbar-item'>Notebooks</div>
                                     </div>
                                 </NavLink>
                             </li>
@@ -76,7 +72,7 @@ function SideBar() {
 
                         </ul>
                     </div>
-                    
+
                 </div>
                 <div className='sidebar-down'>
                     <div className='person-info'>
