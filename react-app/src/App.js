@@ -10,6 +10,7 @@ import NotebookPage from './components/NotebookPage/NotebookPage';
 import AllNotesPage from './components/AllNotesPage/AllNotesPage';
 import NotebookList from './components/NotebookList/NotebookList';
 import LandingPage from './components/LandingPage/LandingPage';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 
 
 
@@ -49,6 +50,9 @@ function App() {
       <ProtectedRoute path='/notes'>
         <AllNotesPage />
       </ProtectedRoute>
+      <Route>
+        <PageNotFound />
+      </Route>
     </BrowserRouter>
   );
 }

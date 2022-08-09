@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { editNoteThunk, deleteNoteThunk } from '../../store/notes';
-import DeleteNote from '../DeleteNote/DeleteNote';
+// import DeleteNote from '../DeleteNote/DeleteNote';
 import MoveNote from '../MoveNote/MoveNote';
 import Editor from './Editor';
 import "react-quill/dist/quill.snow.css";
