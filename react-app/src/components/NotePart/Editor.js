@@ -22,7 +22,6 @@ function Editor({ content, setContent }) {
         ]
     };
 
-
     return (
         <ReactQuill
             modules={modules}
