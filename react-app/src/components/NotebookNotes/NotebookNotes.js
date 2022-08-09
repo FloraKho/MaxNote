@@ -47,7 +47,7 @@ function NotebookNotes() {
                                     <div className='note-card-content' style={{ color: '#737373' }} dangerouslySetInnerHTML={{ __html: `${note.content}` }} />
                                 </div>
                                 <div className='single-note-2'>
-                                    {note.updated_at}
+                                    {(note.updated_at).split(' ').slice(1, 3).reverse().join(' ')}
                                 </div>
                             </div>
 

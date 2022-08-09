@@ -2,8 +2,9 @@
     position: relative;
     display: inline-block;
     color: #333;
-    margin-left: 20px;
+    margin-left: 10px;
     cursor: pointer;
+    margin-top: 2px;
 }
 
 .notification .notification-text {
