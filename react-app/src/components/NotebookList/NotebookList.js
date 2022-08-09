@@ -17,9 +17,11 @@ function NotebookList() {
     const notebookArr = Object.values(notebooks).sort((a, b) => b.created_at.localeCompare(a.created_at));
     const sessionUser = useSelector(state => state.session.user)
 
+
     useEffect(() => {
         dispatch(getNotebooksThunk(sessionUser.id))
     }, [dispatch, sessionUser.id])
+
 
 
 
@@ -52,7 +54,7 @@ function NotebookList() {
                                         CREATED BY
                                     </th>
                                     <th>
-                                        UPDATED
+                                        CREATED
                                     </th>
                                     <th>ACTIONS</th>
                                 </tr>
@@ -75,7 +77,7 @@ function NotebookList() {
                                                 {notebook?.user.email}
                                             </td>
                                             <td className='notebook-style'>
-                                                {notebook?.created_at}
+                                                {(notebook?.created_at).split(' ').splice(0, 4).join(' ')}
                                             </td>
                                             <td className='notebook-action'>
                                                 <EditNotebook notebook={notebook} />

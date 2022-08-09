@@ -24,7 +24,7 @@ function CreateNote({ defaultNotebookId, notebookArr }) {
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
-    console.log('createnote notebook_id', notebook_id)
+    // console.log('createnote notebook_id', notebook_id)
 
     useEffect(() => {
         let errors = [];
