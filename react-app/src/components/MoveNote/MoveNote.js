@@ -49,7 +49,7 @@ function MoveNote({noteId, title, content, currentNotebookId}){
 
     return (
         <>
-            <div className='notification' onClick={() => setShowModal(true)}><i className="fa-solid fa-file-pen"></i><span className='notification-text'>Move note</span></div>
+            <div className='notification' onClick={() => setShowModal(true)}><i className="fa-solid fa-shuffle"></i><span className='notification-text'>Move note</span></div>
         {showModal && (
             <Modal onClose={() => setShowModal(false)}>
                 <div className='move-note'>
