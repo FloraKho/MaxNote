@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.Text, default="https://cdn-icons-png.flaticon.com/512/187/187193.png?w=360")
+    scratch_pad = db.Column(db.Text)
 
     notebooks = db.relationship("Notebook", back_populates="user")
     notes = db.relationship("Note", back_populates="user")
@@ -32,5 +33,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'profile_pic': self.profile_pic
+            'profile_pic': self.profile_pic,
+            'scratch_pad': self.scratch_pad
         }

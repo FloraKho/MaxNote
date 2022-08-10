@@ -62,10 +62,6 @@ function NotePart({ notes }) {
                 setStatus('Saving...')
                 dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))
             }
-            // if(title === '') {
-            //     setTitle('Untitled');
-            //     dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))
-            // }
         }, 1000);
         return () => {
             clearTimeout(timer)

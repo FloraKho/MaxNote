@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from app.forms.profile_form import EditProfileForm
+from app.forms.scratchpad_form import AddScratchPad
 from app.models import User, db, Notebook
 from app.forms import LoginForm
 from app.forms import SignUpForm
@@ -81,7 +82,8 @@ def sign_up():
             defaultNotebook = Notebook(
                 title = "First Notebook",
                 user_id = user.id,
-                created_at=datetime.datetime.now()
+                created_at=datetime.datetime.now(),
+                updated_at=datetime.datetime.now()
         )
         db.session.add(defaultNotebook)
         db.session.commit()
@@ -123,3 +125,20 @@ def update_picture():
         db.session.commit()
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@auth_routes.route('/scratchpad', methods=['PUT'])
+@login_required
+def add_scratchpad():
+    form = AddScratchPad()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        curr_user = User.query.get(current_user.id)
+
+        curr_user.scratch_pad = form.data['scratch_pad']
+
+        db.session.commit()
+
+        return curr_user.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+

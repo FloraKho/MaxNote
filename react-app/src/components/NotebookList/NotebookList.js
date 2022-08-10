@@ -23,8 +23,6 @@ function NotebookList() {
     }, [dispatch, sessionUser.id])
 
 
-
-
     return (
         <>
 
@@ -54,7 +52,7 @@ function NotebookList() {
                                         CREATED BY
                                     </th>
                                     <th>
-                                        CREATED
+                                        UPDATED
                                     </th>
                                     <th>ACTIONS</th>
                                 </tr>
@@ -65,21 +63,18 @@ function NotebookList() {
 
                                         <tr>
                                             <td>
-                                                {/* <div>
-                                                    <i className="fa-solid fa-caret-right"></i>
-                                                </div> */}
                                                 <NavLink style={{ color: '#393d3f', textDecoration: 'none' }} key={notebook?.id} to={`/notebooks/${notebook.id}`}>
-                                                    <i className="fa-solid fa-book"></i>   {notebook?.title}
-
+                                                    <i className="fa-solid fa-book"></i>    {notebook?.title}
                                                 </NavLink>
                                             </td>
                                             <td className='notebook-style'>
                                                 {notebook?.user.email}
                                             </td>
                                             <td className='notebook-style'>
-                                                {new Date(notebook?.created_at).toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric', hour:'numeric', minute:'numeric'})}
+                                                {new Date(notebook?.updated_at).toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric', hour:'numeric', minute:'numeric'})}
                                             </td>
                                             <td className='notebook-action'>
+                                                {/* <EditNotebook notebookId={notebook?.id} currentTitle={notebook?.title} /> */}
                                                 <EditNotebook notebook={notebook} />
                                                 <DeleteNotebook notebookId={notebook.id} notebooks={notebookArr} />
                                             </td>

@@ -34,7 +34,7 @@ function AllNotesList() {
             <div className='all-note-display'>
                 <div className='all-note-header'>
                     <div className='all-note-title'>
-                        <h2><i class="fa-solid fa-file-lines"></i> Notes</h2>
+                        <h2><i className="fa-solid fa-file-lines"></i> Notes</h2>
                     </div>
                     <div className='all-note-count'>
                         {notesArr?.length} notes

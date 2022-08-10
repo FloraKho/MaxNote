@@ -5,13 +5,15 @@ def seed_notebooks():
     notebook1 = Notebook(
         title="Frontend",
         user_id=1,
-        created_at=datetime.datetime.now()
+        created_at=datetime.datetime.now(),
+        updated_at=datetime.datetime.now()
     )
 
     notebook2 = Notebook(
         title="Backend",
         user_id=1,
-        created_at=datetime.datetime.now()
+        created_at=datetime.datetime.now(),
+        updated_at=datetime.datetime.now()
     )
 
 
