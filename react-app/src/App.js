@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
@@ -33,6 +33,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <Switch>
       <Route path='/' exact={true}>
         <LandingPage />
       </Route>
@@ -54,9 +55,10 @@ function App() {
       <ProtectedRoute path='/notes'>
         <AllNotesPage />
       </ProtectedRoute>
-      {/* <Route>
+      <Route>
         <PageNotFound />
-      </Route> */}
+      </Route>
+      </Switch>
     </BrowserRouter>
   );
 }

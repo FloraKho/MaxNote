@@ -18,6 +18,9 @@ function EditNotebook({ notebook }) {
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
+    console.log('notebook.........',notebook)
+    console.log('title............', title)
+
 
     useEffect(() => {
         let errors = [];
@@ -34,9 +37,10 @@ function EditNotebook({ notebook }) {
             title
         }
 
+
         if (newNotebook && !errors.length) {
             await dispatch(editNotebookThunk(newNotebook));
-            setTitle(newNotebook.title)
+            setTitle(newNotebook?.title)
             setHasSubmitted(false)
             setShowModal(false)
             history.push('/notebooks');
