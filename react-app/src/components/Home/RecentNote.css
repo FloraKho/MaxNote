@@ -1,6 +1,6 @@
 .recent-notes {
     border: 3px solid #e9ecef;
-    width: fit-content;
+    width: 66%;
     height: fit-content;
     border-radius: 10px;
 }
@@ -17,7 +17,7 @@
 
 .note-card {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 15px 10px;
 }
 
@@ -61,6 +61,7 @@
     white-space: normal;
     -webkit-line-clamp: 2;
     line-height: 22px;
+    font-size: 18px;
 }
 
 .home-note-date {
