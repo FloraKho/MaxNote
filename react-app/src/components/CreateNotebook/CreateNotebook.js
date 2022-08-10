@@ -55,7 +55,7 @@ function CreateNotebook() {
     return (
         <>
             <div className='add-new-notebook' onClick={() => setShowModal(true)}>
-                <i class="fa-solid fa-file-circle-plus"></i>
+                <i className="fa-solid fa-file-circle-plus"></i>
                 <div>New Notebook</div>
             </div>
             {showModal && (

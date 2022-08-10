@@ -70,7 +70,6 @@ function NotebookList() {
                                                 </div> */}
                                                 <NavLink style={{ color: '#393d3f', textDecoration: 'none' }} key={notebook?.id} to={`/notebooks/${notebook.id}`}>
                                                     <i className="fa-solid fa-book"></i>   {notebook?.title}
-
                                                 </NavLink>
                                             </td>
                                             <td className='notebook-style'>
