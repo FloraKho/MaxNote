@@ -128,8 +128,13 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    text-align: left;
     color: #e5383b;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     margin-bottom: 5px;
+}
+
+.session-errors div {
+    margin: 2px;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -11,19 +11,38 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [hasSubmitted, setHasSubmitted] = useState(false)
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    let errors = [];
+    if (username.length < 4) {
+      errors.push('Please provide a username with at least 4 characters.')
+    }
+    if (!email.includes("@")) {
+      errors.push('Please provide a valid email.')
+    }
+    if (password.length < 6) {
+      errors.push('Password must be 6 characters or more.')
+    }
+    if (password !== repeatPassword){
+      errors.push('Confirm Password field must be the same as the Password field.')
+    }
+    setErrors(errors);
+
+  }, [username, email, password, repeatPassword])
+
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    setHasSubmitted(true)
+    if (password === repeatPassword && !errors.length) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
+        setHasSubmitted(false)
         setErrors(data)
       }
-    } else {
-      setErrors(["Confirm Password field must be the same as the Password field"])
-    }
+    } 
   };
 
   const updateUsername = (e) => {
@@ -42,19 +61,6 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
-
-
-  // useEffect(() => {
-  //   if(!email.includes('@')){
-  //     setErrors(['Please provide a valid email.'])
-  //   }
-  //   if(password.length < 6) {
-  //     setErrors(['Password must be 6 characters or more.'])
-  //   }
-  //   if(username.length < 4){
-  //     setErrors(['Please provide a username with at least 4 characters.'])
-  //   }
-  // }, [email, password, username])
 
   if (user) {
     return <Redirect to='/notes' />;
@@ -75,7 +81,7 @@ const SignUpForm = () => {
         </div>
         <form className='session-form' onSubmit={onSignUp}>
           <div className='session-errors'>
-            {errors.map((error, ind) => (
+            {hasSubmitted && errors.map((error, ind) => (
               <div key={ind}>❌ {error}</div>
             ))}
           </div>
