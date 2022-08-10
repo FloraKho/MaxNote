@@ -46,7 +46,7 @@ function HomePage() {
                                 <i className="fa-regular fa-circle-check"></i>
                                 <span>{noteArr.length} notes</span>
                             </div>
-                            <div> 
+                            <div>
                                 <i className="fa-regular fa-circle-check"></i>
                                 <span>{notebookArr.length} notebooks</span>
                             </div>
@@ -54,9 +54,12 @@ function HomePage() {
                         <ImageUpload />
                     </div>
                 </div>
-                {/* <div>
-                    <RecentNote noteArr={noteArr}/>
-                </div> */}
+                <div className='second-part'>
+                    <RecentNote noteArr={noteArr} />
+                    <div>Pad</div>
+                </div>
+
+
 
             </div>
         </>
