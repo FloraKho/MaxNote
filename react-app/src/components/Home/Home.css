@@ -181,7 +181,46 @@ input[type=file]::file-selector-button:hover {
 
 .second-part {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: flex-start;
     margin: 60px 15px;
+}
+
+.scratch-pad {
+    text-decoration: none;
+    color: #000;
+    background: #ffc;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 10px;
+    height: 365px;
+    margin-left: 10px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.sratch-pad-title {
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    margin: 10px 13px;
+    font-weight: 600;
+    
+}
+
+.scratch-pad-textarea{
+    background-color: #ffc;
+    border: none;
+    border-radius: 10px;
+    width: fit-content;
+    height: 100%;
+    padding: 5px 13px;
+    font-size: 14px;
+    color: #6c757d;
+    border: none;
+    outline: none;
+}
+
+.scratch-pad-textarea:active {
+    border: none;
 }

@@ -1,7 +1,8 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
-const UPDATE_PIC = 'session/UPDATE_PIC'
+const UPDATE_PIC = 'session/UPDATE_PIC';
+const ADD_SCRATCH_PAD = 'session/ADD_SCRATCH_PAD';
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -16,6 +17,13 @@ const updatePic = (user) => ({
   type: UPDATE_PIC,
   user
 })
+
+const addScratchPad = (user) => {
+  return {
+    type: ADD_SCRATCH_PAD,
+    user
+  }
+}
 
 const initialState = { user: null };
 
@@ -120,6 +128,23 @@ export const updatePicThunk = (user) => async (dispatch) => {
   }
 } 
 
+export const addScratchPadThunk = (user) => async(dispatch) => {
+  
+  const { scratch_pad } = user;
+
+  const response = await fetch('/api/auth/scratchpad', {
+    method: "PUT",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({scratch_pad})
+  })
+
+  if (response.ok) {
+    const newText = await response.json();
+    dispatch(addScratchPad(newText));
+    return newText;
+  }
+}
+
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -131,6 +156,10 @@ export default function reducer(state = initialState, action) {
       const newState = {}
       newState['user'] = action.user
       return newState;
+    case ADD_SCRATCH_PAD:
+      const nState = {}
+      nState['user'] = action.user
+      return nState;
     default:
       return state;
   }

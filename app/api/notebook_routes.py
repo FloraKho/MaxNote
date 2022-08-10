@@ -40,7 +40,7 @@ def add_notebook():
             title = form.data['title'],
             user_id = current_user.id,
             created_at=datetime.datetime.now(),
-            # updated_at=datetime.datetime.now(),
+            updated_at=datetime.datetime.now()
         )
 
         db.session.add(new_notebook)
@@ -55,8 +55,9 @@ def edit_notebook(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         curr_notebook = Notebook.query.get(id)
-
+        
         curr_notebook.title = form.data['title']
+        curr_notebook.updated_at = datetime.datetime.now()
 
         db.session.commit()
         return curr_notebook.to_dict()

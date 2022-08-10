@@ -54,7 +54,7 @@ function NotebookList() {
                                         CREATED BY
                                     </th>
                                     <th>
-                                        CREATED
+                                        UPDATED
                                     </th>
                                     <th>ACTIONS</th>
                                 </tr>
@@ -77,7 +77,7 @@ function NotebookList() {
                                                 {notebook?.user.email}
                                             </td>
                                             <td className='notebook-style'>
-                                                {new Date(notebook?.created_at).toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric', hour:'numeric', minute:'numeric'})}
+                                                {new Date(notebook?.updated_at).toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric', hour:'numeric', minute:'numeric'})}
                                             </td>
                                             <td className='notebook-action'>
                                                 <EditNotebook notebook={notebook} />
