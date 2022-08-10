@@ -35,7 +35,7 @@ function SideBar() {
                     <div className='sidebar-profile'>
                         <img
                             id='nav-user-icon'
-                            style={{ width: '40px', height: '40px', borderRadius: '50px' }}
+                            style={{ width: '40px', height: '40px', borderRadius: '50px', objectFit: 'cover', objectPosition: 'center' }}
                             src={sessionUser?.profile_pic}
                             alt={sessionUser?.username}
                         />
@@ -47,6 +47,14 @@ function SideBar() {
                     {notebooks && defaultNotebookId && <CreateNote defaultNotebookId={defaultNotebookId} notebookArr={notebookArr} />}
                     <div className='sidebar-nav'>
                         <ul>
+                            <li>
+                                <NavLink to='/home'>
+                                    <div className='nav-list'>
+                                        <i className="fa-solid fa-house"></i>
+                                        <div className='navbar-item'>Home</div>
+                                    </div>
+                                </NavLink>
+                            </li>
                             <li>
                                 <NavLink to='/notes'>
                                     <div className='nav-list'>

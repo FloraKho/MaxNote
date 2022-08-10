@@ -11,6 +11,7 @@ import AllNotesPage from './components/AllNotesPage/AllNotesPage';
 import NotebookList from './components/NotebookList/NotebookList';
 import LandingPage from './components/LandingPage/LandingPage';
 import PageNotFound from './components/PageNotFound/PageNotFound';
+import Home from './components/Home/Home';
 
 
 
@@ -41,6 +42,9 @@ function App() {
       <Route path='/sign-up' exact={true}>
         <SignUpForm />
       </Route>
+      <ProtectedRoute path='/home' exact={true}>
+        <Home />
+      </ProtectedRoute>
       <ProtectedRoute path='/notebooks' exact={true}>
         <NotebookList />
       </ProtectedRoute>
@@ -50,9 +54,9 @@ function App() {
       <ProtectedRoute path='/notes'>
         <AllNotesPage />
       </ProtectedRoute>
-      <Route>
+      {/* <Route>
         <PageNotFound />
-      </Route>
+      </Route> */}
     </BrowserRouter>
   );
 }
