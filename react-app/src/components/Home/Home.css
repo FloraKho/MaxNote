@@ -6,7 +6,7 @@
 .home-page {
     display: flex;
     align-items: flex-start;
-    justify-items: center;
+    /* justify-items: flex-start; */
     height: 100vh;
     width: 100%;
     background-image: url("background.png");
@@ -15,8 +15,8 @@
 .main-page {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    margin-left: 20%;
+    justify-content: flex-start;
+    /* margin-left: 20%; */
     height: 100%;
     width: 100%;
 }
@@ -25,7 +25,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    margin: 30px 10px;
+    margin: 40px 10px;
 
 }
 
@@ -176,4 +176,12 @@ input[type=file]::file-selector-button {
 
 input[type=file]::file-selector-button:hover {
     background-color: #dee2e6;
+}
+
+
+.second-part {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 80px 30px;
 }
