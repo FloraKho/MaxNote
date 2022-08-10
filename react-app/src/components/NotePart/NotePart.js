@@ -20,6 +20,8 @@ function NotePart({ notes }) {
     const currentContent = currentNote?.content;
     const currentNotebookId = currentNote?.notebook_id;
 
+    let date = new Date(currentNote?.updated_at).toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })
+
 
 
     const [title, setTitle] = useState('');
@@ -107,7 +109,7 @@ function NotePart({ notes }) {
                         </div>
                     </div>
                     <div className='note-part-date'>
-                        Last edited {currentNote?.updated_at}
+                        Last edited {date}
                     </div>
                 </div>
                 <div className='note-part-2'>

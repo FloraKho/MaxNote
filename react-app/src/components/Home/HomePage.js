@@ -13,11 +13,11 @@ function HomePage() {
 
 
     const greeting = () => {
-        const time = new Date().getHours();
+        const now = new Date().getHours();
         let p;
-        if (time < 11) {
+        if (now < 12) {
             p = "Good morning";
-        } else if (11 < time < 18) {
+        } else if (11 < now < 19) {
             p = "Good afternoon";
         } else {
             p = "Good evening";
@@ -56,7 +56,7 @@ function HomePage() {
                 </div>
                 <div className='second-part'>
                     <RecentNote noteArr={noteArr} />
-                    <div>Pad</div>
+                    <div></div>
                 </div>
 
 

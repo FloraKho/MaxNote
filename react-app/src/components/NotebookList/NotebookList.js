@@ -77,7 +77,7 @@ function NotebookList() {
                                                 {notebook?.user.email}
                                             </td>
                                             <td className='notebook-style'>
-                                                {(notebook?.created_at).split(' ').splice(0, 4).join(' ')}
+                                                {new Date(notebook?.created_at).toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric', hour:'numeric', minute:'numeric'})}
                                             </td>
                                             <td className='notebook-action'>
                                                 <EditNotebook notebook={notebook} />
