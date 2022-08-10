@@ -54,9 +54,9 @@ function HomePage() {
                         <ImageUpload />
                     </div>
                 </div>
-                <div>
+                {/* <div>
                     <RecentNote noteArr={noteArr}/>
-                </div>
+                </div> */}
 
             </div>
         </>
