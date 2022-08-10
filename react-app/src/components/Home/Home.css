@@ -212,13 +212,15 @@ input[type=file]::file-selector-button:hover {
     background-color: #ffc;
     border: none;
     border-radius: 10px;
-    width: fit-content;
+    width: 90%;
+    max-width: 430px;
     height: 100%;
     padding: 5px 13px;
     font-size: 14px;
     color: #6c757d;
     border: none;
     outline: none;
+    margin-left: 5px;
 }
 
 .scratch-pad-textarea:active {
