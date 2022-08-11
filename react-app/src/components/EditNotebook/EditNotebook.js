@@ -5,13 +5,13 @@ import { useHistory } from "react-router-dom";
 import { editNotebookThunk } from '../../store/notebooks';
 import './EditNotebook.css';
 
-function EditNotebook({ notebook }) {
+function EditNotebook({ notebookId, currentTitle }) {
 
 
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const currentTitle = notebook?.title
+    // const currentTitle = notebook?.title
 
     const [title, setTitle] = useState('');
     const [showModal, setShowModal] = useState(false);
@@ -20,8 +20,8 @@ function EditNotebook({ notebook }) {
 
 
     useEffect(() => {
-        setTitle(notebook?.title)
-    }, [notebook])
+        setTitle(currentTitle)
+    }, [currentTitle])
 
 
     useEffect(() => {
@@ -35,7 +35,7 @@ function EditNotebook({ notebook }) {
         e.preventDefault();
         setHasSubmitted(true)
         const newNotebook = {
-            id: notebook.id,
+            id: notebookId,
             title
         }
 

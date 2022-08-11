@@ -22,7 +22,6 @@ function NotebookNotes() {
 
 
     return (
-
         <>
             <div className='all-note-display'>
                 <div className='all-note-header'>
@@ -41,9 +40,6 @@ function NotebookNotes() {
                                     <div className='single-note-title'>
                                         {note.title}
                                     </div>
-                                    {/* <div className='note-card-content'>
-                                        {note.content}
-                                    </div> */}
                                     <div className='note-card-content' style={{ color: '#737373' }} dangerouslySetInnerHTML={{ __html: `${note.content}` }} />
                                 </div>
                                 <div className='single-note-2'>
