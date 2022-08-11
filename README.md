@@ -31,8 +31,9 @@ Maxnote is a clone of the popular note-taking application - [Evernote](https://e
 [Quill](https://github.com/quilljs/quill) 
 
 
-## MaxNote At a glance 💚
-
+## Preview 💚
+### Landing Page
+![LandingPage](./react-app/public/images/LandingPage.gif)
 
 ## Run Locally 🖥
 
