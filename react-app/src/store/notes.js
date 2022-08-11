@@ -20,11 +20,10 @@ const getOneNote = (note) => {
     }
 }
 
-const getNotebookNotes = (notes, notebookId) => {
+const getNotebookNotes = (notes) => {
     return {
         type: GET_NOTEBOOK_NOTES,
-        notes,
-        notebookId
+        notes
     }
 }
 
@@ -69,9 +68,11 @@ export const getOneNoteThunk = (noteId) => async (dispatch) => {
 
 export const getNotebookNotesThunk = (notebookId) => async (dispatch) => {
     const response = await fetch(`/api/notebooks/${notebookId}/notes`)
-    const notes = await response.json();
+    if (response.ok) {
+        const notes = await response.json();
+        dispatch(getNotebookNotes(notes))
+    }
 
-    dispatch(getNotebookNotes(notes, notebookId))
 }
 
 export const addNoteThunk = (note) => async (dispatch) => {

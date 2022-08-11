@@ -63,7 +63,7 @@ const SignUpForm = () => {
 
 
   if (user) {
-    return <Redirect to='/notes' />;
+    return <Redirect to='/home' />;
   }
 
   return (

@@ -15,7 +15,7 @@ function PageNotFound() {
             <>
 
                 <div className='pagenotfound'>
-                    {sessionUser ? (<Link to='/notes'><button>Go Back</button></Link>) :
+                    {sessionUser ? (<Link to='/home'><button>Go Back</button></Link>) :
                         (<Link to='/'><button>Go Back</button></Link>)}
                 </div>
 

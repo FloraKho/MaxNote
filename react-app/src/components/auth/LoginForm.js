@@ -31,12 +31,12 @@ const LoginForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/notes' />;
+    return <Redirect to='/home' />;
   }
 
   const demouser = async () => {
     await dispatch(sessionActions.login("demo@aa.io", "password"));
-    history.push('/notes');
+    history.push('/home');
   }
   return (
     <div className='loginpage'>
