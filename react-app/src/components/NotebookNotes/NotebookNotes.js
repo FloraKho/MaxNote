@@ -1,24 +1,28 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Route } from 'react-router-dom';
 import NotePart from '../NotePart/NotePart';
-import { getNotebookNotesThunk } from '../../store/notes';
+import { getNotesThunk } from '../../store/notes';
 
 
-function NotebookNotes() {
+function NotebookNotes({notebookId}) {
 
     const dispatch = useDispatch();
-    const { notebookId } = useParams();
-    const notebookNotes = useSelector(state => state?.noteState);
+    const sessionUser = useSelector(state => state.session.user);
+    const userNotes = useSelector(state => state.noteState);
+    const userNotesArr = Object.values(userNotes);
+    const notebookNotes = userNotesArr.filter(note => note.notebook_id === +notebookId)
+    const notesArr = notebookNotes.sort((a, b) => b.updated_at.localeCompare(a.updated_at));
+
+
     const notebooks = useSelector(state => state.notebookState);
-    const currentNotebook = Object.values(notebooks).filter(notebook => notebook.id === +notebookId);
-
-    const notesArr = Object.values(notebookNotes).sort((a, b) => b.updated_at.localeCompare(a.updated_at));
-
+    const currentNotebook = Object.values(notebooks).find(notebook => notebook.id === +notebookId);
+   
+    
     useEffect(() => {
-        dispatch(getNotebookNotesThunk(notebookId))
-    }, [dispatch, notebookId])
+        dispatch(getNotesThunk(sessionUser.id))
+    }, [dispatch, sessionUser.id])
 
 
     return (
@@ -26,7 +30,7 @@ function NotebookNotes() {
             <div className='all-note-display'>
                 <div className='all-note-header'>
                     <div className='all-note-title'>
-                        <h2><i className="fa-solid fa-book-bookmark"></i>{currentNotebook[0]?.title}</h2>
+                        <h2><i className="fa-solid fa-book-bookmark"></i>{currentNotebook?.title}</h2>
                     </div>
                     <div className='all-note-count'>
                         {notesArr?.length} notes
@@ -52,7 +56,7 @@ function NotebookNotes() {
             </div>
 
             <Route path='/notebooks/:notebookId/notes/:noteId'>
-                <NotePart notes={notebookNotes} />
+                <NotePart notes={userNotes} />
             </Route>
 
 

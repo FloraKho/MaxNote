@@ -33,10 +33,6 @@ function NotePart({ notes }) {
             alert("Title must be within 50 characters. Autosave failed.")
             setTitle(currentNote?.title)
         }
-        // if(title === ''){
-        //     alert("Your note name must contain at least one character. Save failed")
-        //     setTitle(currentNote?.title)
-        // }
     }, [title, currentNote])
 
     useEffect(() => {
@@ -46,15 +42,6 @@ function NotePart({ notes }) {
         }
     }, [currentNote])
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         if (title === '') {
-    //             alert("Your note name must contain at least one character. Autosave failed")
-    //             setTitle(currentTitle)
-    //         }
-    //     }, 5000);
-    //     return () => setTimeout(timer)
-    // }, [dispatch, title, currentTitle])
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -76,7 +63,7 @@ function NotePart({ notes }) {
                 setTitle(currentTitle);
                 dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))
             }
-        }, 3000);
+        }, 2000);
         return () => {
             clearTimeout(timer)
             setStatus('All changes saved');
