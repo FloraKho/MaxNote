@@ -10,7 +10,6 @@ import './NotebookList.css'
 
 function NotebookList() {
 
-    // const [search, setSearch] = useState('')
     const dispatch = useDispatch();
 
     const notebooks = useSelector(state => state.notebookState);
@@ -25,7 +24,6 @@ function NotebookList() {
 
     return (
         <>
-
             <div className='note-book-list'>
                 <SideBar />
                 <div className='notebook-list-page'>
@@ -74,8 +72,8 @@ function NotebookList() {
                                                 {new Date(notebook?.updated_at).toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric', hour:'numeric', minute:'numeric'})}
                                             </td>
                                             <td className='notebook-action'>
-                                                {/* <EditNotebook notebookId={notebook?.id} currentTitle={notebook?.title} /> */}
-                                                <EditNotebook notebook={notebook} />
+                                                <EditNotebook notebookId={notebook.id} currentTitle={notebook.title} />
+                                                {/* <EditNotebook notebook={notebook} /> */}
                                                 <DeleteNotebook notebookId={notebook.id} notebooks={notebookArr} />
                                             </td>
 
