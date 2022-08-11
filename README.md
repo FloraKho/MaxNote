@@ -35,6 +35,9 @@ Maxnote is a clone of the popular note-taking application - [Evernote](https://e
 ### Landing Page
 ![LandingPage](./react-app/public/images/LandingPage.gif)
 
+### Login Page
+
+
 
 ## Run Locally 🖥
 
