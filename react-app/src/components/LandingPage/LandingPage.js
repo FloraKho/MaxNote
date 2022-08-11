@@ -15,12 +15,12 @@ function LandingPage() {
 
     const demouser = async () => {
         await dispatch(sessionActions.login("demo@aa.io", "password"));
-        history.push('/notes');
+        history.push('/home');
     }
 
 
     if (sessionUser) return (
-        <Redirect to='/notes' />
+        <Redirect to='/home' />
     )
 
 
