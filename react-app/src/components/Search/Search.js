@@ -41,7 +41,7 @@ function Search() {
             <div className='sidebar-search'>
                 <div className='search-bar'>
                     <i className="fa-solid fa-magnifying-glass"></i>
-                    <input type='text' value={searchWords} onChange={handleResearch} className='search-input' placeholder="Search" />
+                    <input type='text' value={searchWords} onChange={handleResearch} className='search-input' placeholder="Search note title" />
                 </div>
 
                 {noteArr && filter.length !== 0 && (<div className='search-result'>
