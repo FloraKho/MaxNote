@@ -80,7 +80,25 @@
     margin: 15px 10px;
 }
 
+.session-part {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-family: 'Roboto', sans-serif;
+}
+
+.session-lable {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: #495057
+}
+
 .session-input {
+    width: 95%;
     padding: 12px 10px;
     font-size: 15px;
     font-family: 'Roboto', sans-serif;
@@ -103,7 +121,6 @@
     text-decoration: none;
     padding: 12px 80px;
     letter-spacing: 0.5px;
-
     margin: 10px 0;
 }
 

@@ -23,7 +23,7 @@ function CreateNotebook() {
     useEffect(() => {
         let errors = [];
         if (title.length >= 30) errors.push("Title length must less than 30 characters")
-        if (!title.length) errors.push("Your notebook name must contain at least one character")
+        if (!title.length || !(/[a-zA-Z0-9]/.test(title))) errors.push("Your notebook name must contain at least one character")
         setErrors(errors);
     }, [title])
 

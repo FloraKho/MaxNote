@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Route } from 'react-router-dom';
 import NotePart from '../NotePart/NotePart';
 import { getNotesThunk } from '../../store/notes';
+import './NotebookNotes.css';
 
 
 function NotebookNotes({notebookId}) {
@@ -29,7 +30,7 @@ function NotebookNotes({notebookId}) {
         <>
             <div className='all-note-display'>
                 <div className='all-note-header'>
-                    <div className='all-note-title'>
+                    <div className='notebook-title'>
                         <h2><i className="fa-solid fa-book-bookmark"></i>{currentNotebook?.title}</h2>
                     </div>
                     <div className='all-note-count'>

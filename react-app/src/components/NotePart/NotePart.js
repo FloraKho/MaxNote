@@ -58,7 +58,7 @@ function NotePart({ notes }) {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if (title === '') {
+            if (!title.length || !(/[a-zA-Z0-9]/.test(title))) {
                 alert("Title must contain at least one character. Autosave failed")
                 setTitle(currentTitle);
                 dispatch(editNoteThunk({ id: noteId, title, content, notebook_id: currentNotebookId }))

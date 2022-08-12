@@ -86,7 +86,7 @@ const SignUpForm = () => {
             ))}
           </div>
 
-          {/* <label>Username</label> */}
+          <label className='session-lable'>Username:</label>
           <input
             className='session-input'
             placeholder='Username'
@@ -96,9 +96,8 @@ const SignUpForm = () => {
             value={username}
           ></input>
 
-
-          {/* <label>Email</label> */}
-
+          <div className='session-part'>
+            <label className='session-lable'>Email:</label>
           <input
             className='session-input'
             placeholder='Email address'
@@ -107,9 +106,10 @@ const SignUpForm = () => {
             onChange={updateEmail}
             value={email}
           ></input>
+          </div>
 
-
-          {/* <label>Password</label> */}
+          <div className='session-part'>
+            <label className='session-lable'>Password:</label>
           <input
             className='session-input'
             placeholder='Password'
@@ -118,8 +118,10 @@ const SignUpForm = () => {
             onChange={updatePassword}
             value={password}
           ></input>
+          </div>
 
-          {/* <label>Confirmed Password</label> */}
+          <div className='session-part'>
+          <label className='session-lable'>Confirmed Password:</label>
           <input
             className='session-input'
             placeholder='Confirmed password'
@@ -129,7 +131,7 @@ const SignUpForm = () => {
             value={repeatPassword}
             required={true}
           ></input>
-
+          </div>
           <button className='session-submit' type='submit'>Sign Up</button>
         </form>
         <div className='session-info'>
