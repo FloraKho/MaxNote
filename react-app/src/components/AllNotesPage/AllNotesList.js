@@ -17,10 +17,6 @@ function AllNotesList() {
 
     const notesArr = Object.values(notes).sort((a, b) => b.updated_at.localeCompare(a.updated_at))
 
-    // const divStyle = {
-    //     color: '#4d4d4d',
-    //     WebkitTransition: 'all'
-    // };
 
     useEffect(() => {
         dispatch(getNotebooksThunk(sessionUser.id))

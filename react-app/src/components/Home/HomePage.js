@@ -31,16 +31,17 @@ function HomePage() {
     // }, [dispatch, content])
 
     const greeting = () => {
-        const now = new Date().getHours();
-        let p;
-        if (now < 12) {
-            p = "Good morning";
-        } else if (11 < now < 19) {
-            p = "Good afternoon";
+        const hour = new Date().getHours();
+        const welcomeTypes = ['Good morning', 'Good afternoon', 'Good evening'];
+        let welcomeText = ''
+        if (hour < 12) {
+            welcomeText = welcomeTypes[0]
+        } else if (hour < 18) {
+            welcomeText = welcomeTypes[1];
         } else {
-            p = "Good evening";
+            welcomeText = welcomeTypes[2];
         }
-        return p;
+        return welcomeText;
     }
 
 
