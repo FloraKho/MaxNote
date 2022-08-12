@@ -61,8 +61,8 @@ const LoginForm = () => {
               <div key={ind}>❌ {error}</div>
             ))}
           </div>
-          {/* <div> */}
-            {/* <label htmlFor='email'>Email</label> */}
+          <div className='session-part'> 
+            <label className='session-lable' htmlFor='email'>Email:</label>
             <input
               className='session-input'
               name='email'
@@ -71,9 +71,9 @@ const LoginForm = () => {
               value={email}
               onChange={updateEmail}
             />
-          {/* </div> */}
-          {/* <div className='seesion-input'> */}
-            {/* <label htmlFor='password'>Password</label> */}
+          </div>
+          <div className='session-part'>
+            <label className='session-lable'  htmlFor='password'>Password:</label>
             <input
               className='session-input'
               name='password'
@@ -82,7 +82,7 @@ const LoginForm = () => {
               value={password}
               onChange={updatePassword}
             />
-          {/* </div> */}
+          </div>
           <button className='session-submit' type='submit'>Continue</button>
         </form>
         <div className='session-info'>

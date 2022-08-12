@@ -30,7 +30,7 @@ function CreateNote({ defaultNotebookId, notebookArr }) {
     useEffect(() => {
         let errors = [];
         if (title.length > 50) errors.push("Title length must less than 50 characters")
-        if (!title.length) errors.push("Your note title must contain at least one character")
+        if (!title.length || !(/[a-zA-Z0-9]/.test(title))) errors.push("Your note title must contain at least one character")
         if (!notebook_id) errors.push("Please select a notebook!")
         setErrors(errors);
     }, [title, notebook_id])
