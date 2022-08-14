@@ -20,8 +20,8 @@ const SignUpForm = () => {
     if (username.length < 4) {
       errors.push('Please provide a username with at least 4 characters.')
     }
-    if (!(/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email))) {
-      errors.push('Please provide a valid email.')
+    if (!(/[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]{2,3}/.test(email))) {
+      errors.push('Please provide a valid email (e.g. example@gmail.com).')
     }
     if (password.length < 6) {
       errors.push('Password must be 6 characters or more.')
