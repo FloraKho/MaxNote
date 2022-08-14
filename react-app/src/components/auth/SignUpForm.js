@@ -20,7 +20,7 @@ const SignUpForm = () => {
     if (username.length < 4) {
       errors.push('Please provide a username with at least 4 characters.')
     }
-    if (!email.includes("@")) {
+    if (!(/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(email))) {
       errors.push('Please provide a valid email.')
     }
     if (password.length < 6) {
