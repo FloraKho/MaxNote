@@ -14,7 +14,7 @@ function NotebookNotes({notebookId}) {
     const userNotes = useSelector(state => state.noteState);
     const userNotesArr = Object.values(userNotes);
     const notebookNotes = userNotesArr.filter(note => note.notebook_id === +notebookId)
-    const notesArr = notebookNotes.sort((a, b) => b.updated_at.localeCompare(a.updated_at));
+    const notesArr = notebookNotes.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
 
     const notebooks = useSelector(state => state.notebookState);
@@ -48,7 +48,7 @@ function NotebookNotes({notebookId}) {
                                     <div className='note-card-content' style={{ color: '#737373' }} dangerouslySetInnerHTML={{ __html: `${note.content}` }} />
                                 </div>
                                 <div className='single-note-2'>
-                                    {(note.updated_at).split(' ').slice(1, 3).reverse().join(' ')}
+                                    {new Date(note.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', })}
                                 </div>
                             </div>
 
