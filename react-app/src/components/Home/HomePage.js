@@ -14,7 +14,7 @@ function HomePage() {
     const notebooks = useSelector(state => state.notebookState);
     const notebookArr = Object.values(notebooks);
     const notes = useSelector(state => state.noteState);
-    const noteArr = Object.values(notes).sort((a, b) => b.updated_at.localeCompare(a.updated_at))
+    const noteArr = Object.values(notes).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
 
     const [content, setContent] = useState(sessionUser.scratch_pad);
 

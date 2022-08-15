@@ -13,7 +13,7 @@ function NotebookList() {
     const dispatch = useDispatch();
 
     const notebooks = useSelector(state => state.notebookState);
-    const notebookArr = Object.values(notebooks).sort((a, b) => b.created_at.localeCompare(a.created_at));
+    const notebookArr = Object.values(notebooks).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     const sessionUser = useSelector(state => state.session.user)
 
 
